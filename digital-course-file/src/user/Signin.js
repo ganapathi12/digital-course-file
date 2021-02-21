@@ -3,6 +3,7 @@ import '../App.css'
 import fire from '../fire'
 import Login from './Login'
 import Hero from './Hero'
+import firebase from 'firebase'
 
 const Signin = () => {
   const [user, setUser] = useState('')
@@ -11,6 +12,64 @@ const Signin = () => {
   const [emailError, setEmailError] = useState('')
   const [passwordError, setPasswordError] = useState('')
   const [hasAccount, setHasAccount] = useState(false)
+
+  const githubsignin = () => {
+    var provider = new firebase.auth.GithubAuthProvider()
+    firebase
+      .auth()
+      .signInWithPopup(provider)
+      .then((result) => {
+        /** @type {firebase.auth.OAuthCredential} */
+        var credential = result.credential
+
+        // This gives you a GitHub Access Token. You can use it to access the GitHub API.
+        var token = credential.accessToken
+
+        // The signed-in user info.
+        setUser(result.user)
+        // ...
+      })
+      .catch((error) => {
+        // Handle Errors here.
+        var errorCode = error.code
+        var errorMessage = error.message
+        // The email of the user's account used.
+        var email = error.email
+        // The firebase.auth.AuthCredential type that was used.
+        var credential = error.credential
+        setEmailError(error.message)
+        // ...
+      })
+  }
+
+  const googlesignin = () => {
+    clearErrors()
+    var provider = new firebase.auth.GoogleAuthProvider()
+    firebase
+      .auth()
+      .signInWithPopup(provider)
+      .then((result) => {
+        /** @type {firebase.auth.OAuthCredential} */
+        var credential = result.credential
+
+        // This gives you a Google Access Token. You can use it to access the Google API.
+        var token = credential.accessToken
+        // The signed-in user info.
+        setUser(result.user)
+        // ...
+      })
+      .catch((error) => {
+        // Handle Errors here.
+        var errorCode = error.code
+        var errorMessage = error.message
+        // The email of the user's account used.
+        var email = error.email
+        // The firebase.auth.AuthCredential type that was used.
+        var credential = error.credential
+        setEmailError(error.message)
+        // ...
+      })
+  }
 
   const clearInputs = () => {
     setEmail('')
@@ -80,22 +139,24 @@ const Signin = () => {
 
   return (
     <div className='App'>
-        {user?(
-            <Hero handleLogout={handleLogout}/>
-        ):(
-            <Login
-        email={email}
-        setEmail={setEmail}
-        password={password}
-        setPassword={setPassword}
-        handleLogin={handleLogin}
-        handleSignup={handleSignup}
-        hasAccount={hasAccount}
-        setHasAccount={setHasAccount}
-        emailError={emailError}
-        passwordError={passwordError}
-      />
-        )}   
+      {user ? (
+        <Hero handleLogout={handleLogout} />
+      ) : (
+        <Login
+          email={email}
+          setEmail={setEmail}
+          password={password}
+          setPassword={setPassword}
+          handleLogin={handleLogin}
+          handleSignup={handleSignup}
+          hasAccount={hasAccount}
+          setHasAccount={setHasAccount}
+          emailError={emailError}
+          passwordError={passwordError}
+          googlesignin={googlesignin}
+          githubsignin={githubsignin}
+        />
+      )}
     </div>
   )
 }
