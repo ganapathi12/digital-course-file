@@ -1,46 +1,48 @@
-import { react  } from "react";
-import { Breadcrumb } from "react-bootstrap";
-import { Link } from "react-router-dom";
-import { ROOT_FOLDER } from "../hooks/useFolder";
+import React from 'react';
+import AddFolder from "./AddFolder";
+import { Container,Button } from "react-bootstrap";
+import { useFolder } from ".././hooks/useFolder";
+import Folder from "./Folder";
+import FolderNav from "./FolderNav";
+import { useParams } from "react-router-dom";
 
-export default function FolderNav( {currentFolder} ) {
+const Hero=({handleLogout})=>{
 
-    let path = currentFolder === ROOT_FOLDER ? [] : [ROOT_FOLDER]
-    if (currentFolder){ 
-        path = [...path,...currentFolder.path];
-    }
+    const { folderId } = useParams();
+    const {folder, childFolders} = useFolder(folderId);
 
-    
     return(
-        <Breadcrumb
-            className="flex-grow-1"
-            listProps = {{ className : "bg-white pl-0 m-0"}}
-        >
-            {path.map((folder,index) => (
-                <Breadcrumb.Item 
-                    key={folder.id}
-                    linkAs ={Link}
-                    linkProps = {{
-                        to : folder.id ? `/folder/${folder.id}` : "/",
-                    }}
-                    className="text-truncate d-inline-block"
-                    style = { {maxWidth : "175px"} }
-                >
-                    {folder.name}
-                </Breadcrumb.Item>
-            ))}
-            { currentFolder && (
-                <Breadcrumb.Item 
-                    className="text-truncate d-inline-block"
-                    style = { {maxWidth : "200px"} }
-                    active
-                >
-                    {currentFolder.name}
-                </Breadcrumb.Item>
-            )
+        <>
+        <section className="hero">
+            <nav>
+                <h2>Course File</h2>
+                <button className="logoutbutton" onClick={handleLogout}>Logout</button>
+            </nav>
+        </section>
 
-            }
-        </Breadcrumb>
+        <Container fluid>Contents</Container>
+        <Container fluid>
+        <div className="d-flex align-items-center">
+            <FolderNav currentFolder={folder}/>
+            <AddFolder currentFolder={folder}/>
+            </div>
+
+            {childFolders.length > 0 && (
+                <div className="d-flex flex-wrap">
+                    {childFolders.map(childFolder => (
+                        <div
+                            key = {childFolder.id}
+                            style = { {maxWidth : "250px"}}
+                            className="p-2"
+                        >
+                            <Folder folder={childFolder}></Folder>
+                        </div>
+                    ))}
+                </div>
+            )}
+
+        </Container>
+        </>  
     );
-
 }
+export default Hero;
