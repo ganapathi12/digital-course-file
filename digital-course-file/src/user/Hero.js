@@ -4,6 +4,7 @@ import { Container,Button } from "react-bootstrap";
 import { useFolder } from ".././hooks/useFolder";
 import Folder from "./Folder";
 import FolderNav from "./FolderNav";
+import Deffolders from "./Deffolders";
 import { useParams } from "react-router-dom";
 
 const Hero=({handleLogout})=>{
@@ -24,7 +25,8 @@ const Hero=({handleLogout})=>{
         <Container fluid>
         <div className="d-flex align-items-center">
             <FolderNav currentFolder={folder}/>
-            <AddFolder currentFolder={folder} />
+            <AddFolder currentFolder={folder}/>
+            <Deffolders currentFolder={folder}/>
             </div>
 
             {childFolders.length > 0 && (

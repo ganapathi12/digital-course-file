@@ -36,10 +36,6 @@ export default function AddFolder( {currentFolder} ){
         path : path,
         createdAt : database.getTime()
       })
-
-      // if(currentFolder.parentId == null){        
-      // }      
-
       setName("");
       closeModal();
     }
