@@ -15,7 +15,7 @@ export default function Folder ({folder}) {
             <FontAwesomeIcon icon={faFolder} className="mr-2"/>
             {folder.name}
         </Button>
-
+        
     );
 
 }
