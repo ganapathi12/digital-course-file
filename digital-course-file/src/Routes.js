@@ -6,6 +6,7 @@ import Home from "./core/Home"
 import Hero from "./user/Hero"
 import Signin from "./user/Signin"
 // import UserDashboard from "./user/UserDashboard"
+import copyright from "./user/copyright"
 
 const Routes=()=>{
     return(
@@ -17,6 +18,7 @@ const Routes=()=>{
 
             <Route path="/" exact component={Signin}/>
             <Route path="/signin" exact component={Signin}/>
+            <Route path="/copyright" exact component={copyright}/>
             {/* <Route path="/cart" exact component={Cart}/> */}
             {/* <PrivateRoutes path="/user/dashboard" exact component={UserDashboard}/> */}
         </Switch>

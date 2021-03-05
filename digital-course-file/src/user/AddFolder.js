@@ -44,7 +44,7 @@ export default function AddFolder( {currentFolder} ){
 
     return (
         <>
-          <Button style={{maxWidth : "80px"}} onClick={openModal} variant="primary" size="lg">
+          <Button style={{maxWidth : "80px" }} className="mr-2" onClick={openModal} variant="primary" size="sm" >
             <FontAwesomeIcon icon={faFolderPlus} />
           </Button>
           <Modal show={open} onHide={closeModal} >

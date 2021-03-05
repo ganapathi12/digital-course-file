@@ -71,7 +71,7 @@ export default function Deffolders( {currentFolder} ){
     }
   return (
     <>
-      <Button style={{maxWidth : "80px"}} onClick={openModel} variant="primary" size="lg">
+      <Button style={{maxWidth : "80px"}} onClick={openModel} variant="primary" size="sm">
         <FontAwesomeIcon icon={faBolt} />
       </Button>
     </>
