@@ -7,6 +7,7 @@ import FolderNav from './FolderNav'
 import Deffolders from './Deffolders'
 import { useParams } from 'react-router-dom'
 import copyright from './copyright'
+import { Link } from 'react-router-dom'
 
 const Hero = ({ handleLogout }) => {
   const { folderId } = useParams()
@@ -16,7 +17,10 @@ const Hero = ({ handleLogout }) => {
     <>
       <section className='hero'>
         <nav>
-          <h2>Course File System</h2>
+          <Navbar.Brand as={Link} to='/'>
+            <h2>Course File System</h2>
+          </Navbar.Brand>
+
           <button className='logoutbutton' onClick={handleLogout}>
             Logout
           </button>
@@ -27,8 +31,7 @@ const Hero = ({ handleLogout }) => {
         <div className='d-flex align-items-center'>
           <FolderNav currentFolder={folder} />
           <AddFolder currentFolder={folder} />
-          {(childFolders.length == 0 ) && (<Deffolders currentFolder={folder} />) }
-          
+          {childFolders.length == 0 && <Deffolders currentFolder={folder} />}
         </div>
 
         {childFolders.length > 0 && (
