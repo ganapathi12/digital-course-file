@@ -8,10 +8,21 @@ import Deffolders from './Deffolders'
 import { useParams } from 'react-router-dom'
 import copyright from './copyright'
 import { Link } from 'react-router-dom'
+import Loader from "react-loader-spinner";
 
 const Hero = ({ handleLogout }) => {
   const { folderId } = useParams()
   const { folder, childFolders } = useFolder(folderId)
+  console.log(folder);
+   if (!folder) {
+        return <><div className='centered'><Loader
+        type="Puff"
+        color="#00BFFF"
+        height={100}
+        width={100}
+        timeout={3000} //3 secs
+      /></div></>
+    }
 
   return (
     <>
@@ -31,7 +42,7 @@ const Hero = ({ handleLogout }) => {
         <div className='d-flex align-items-center'>
           <FolderNav currentFolder={folder} />
           <AddFolder currentFolder={folder} />
-          {childFolders.length == 0 && <Deffolders currentFolder={folder} />}
+          {(childFolders.length == 0  && folder.id==null) && <Deffolders currentFolder={folder} />}
         </div>
 
         {childFolders.length > 0 && (
