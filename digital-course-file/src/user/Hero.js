@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import AddFolder from './AddFolder'
 import { Container, Button, Navbar, Nav } from 'react-bootstrap'
 import { useFolder } from '.././hooks/useFolder'
@@ -8,41 +8,37 @@ import Deffolders from './Deffolders'
 import { useParams } from 'react-router-dom'
 import copyright from './copyright'
 import { Link } from 'react-router-dom'
-import Loader from "react-loader-spinner";
+import Loader from 'react-loader-spinner'
 
 const Hero = ({ handleLogout }) => {
   const { folderId } = useParams()
   const { folder, childFolders } = useFolder(folderId)
-  console.log(folder);
-   if (!folder) {
-        return <><div className='centered'><Loader
-        type="Puff"
-        color="#00BFFF"
-        height={100}
-        width={100}
-        timeout={3000} //3 secs
-      /></div></>
-    }
+
+  if (!folder) {
+    return (
+      <>
+        <div className='centered'>
+          <Loader
+            type='Puff'
+            color='#00BFFF'
+            height={100}
+            width={100}
+            timeout={3000} //3 secs
+          />
+        </div>
+      </>
+    )
+  }
 
   return (
     <>
-      <section className='hero'>
-        <nav>
-          <Navbar.Brand as={Link} to='/'>
-            <h2>Course File System</h2>
-          </Navbar.Brand>
-
-          <button className='logoutbutton' onClick={handleLogout}>
-            Logout
-          </button>
-        </nav>
-      </section>
-
       <Container fluid>
         <div className='d-flex align-items-center'>
           <FolderNav currentFolder={folder} />
           <AddFolder currentFolder={folder} />
-          {(childFolders.length == 0  && folder.id==null) && <Deffolders currentFolder={folder} />}
+          {childFolders.length == 0 && folder.id == null && (
+            <Deffolders currentFolder={folder} />
+          )}
         </div>
 
         {childFolders.length > 0 && (
@@ -59,13 +55,6 @@ const Hero = ({ handleLogout }) => {
           </div>
         )}
       </Container>
-      <Navbar fixed='bottom' variant='light' bg='light'>
-        <Container className='ml-sm-2'>
-          <Nav.Link eventKey={2} href='copyright'>
-            &copy; Digital Course File Group 2
-          </Nav.Link>
-        </Container>
-      </Navbar>
     </>
   )
 }

@@ -1,6 +1,8 @@
 import { useState,useReducer, useEffect } from "react";
 import { database } from '../fire.js'
 import firebase from 'firebase'
+import Loader from "react-loader-spinner";
+
 
 export const ROOT_FOLDER = {name: 'Root', id : null , path : [] };
 
@@ -83,6 +85,15 @@ export function useFolder( folderId = null, folder= null) {
 
     
     useEffect( () => {
+        if (!firebase.auth().currentUser) {
+        return <><div className='centered'><Loader
+        type="Puff"
+        color="#00BFFF"
+        height={100}
+        width={100}
+        timeout={3000} //3 secs
+      /></div></>
+    }
         return database.folders
             .where("parentId", "==" ,folderId)
             .where("userId","==", firebase.auth().currentUser.uid)
