@@ -10,6 +10,7 @@ import copyright from './user/copyright'
 import { Link } from 'react-router-dom'
 import { Container, Button, Navbar, Nav } from 'react-bootstrap'
 import fire from './fire'
+import ForgotPassword from "./user/ForgotPassword"
 
 
 const Routes = () => {
@@ -51,6 +52,7 @@ const Routes = () => {
         <Route path='/' exact component={Signin} />
         <Route path='/signin' exact component={Signin} />
         <Route path='/copyright' exact component={copyright} />
+        <Route path='/forgot-password' component={ForgotPassword} />
       </Switch>
        <Navbar fixed='bottom' variant='light' bg='light'>
         <Container className='ml-sm-2'>

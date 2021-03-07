@@ -12,6 +12,7 @@ const Signin = () => {
   const [emailError, setEmailError] = useState('')
   const [passwordError, setPasswordError] = useState('')
   const [hasAccount, setHasAccount] = useState(false)
+  const [loading, setloading] = useState(false)
 
   const githubsignin = () => {
     var provider = new firebase.auth.GithubAuthProvider()
@@ -81,7 +82,10 @@ const Signin = () => {
     setPasswordError('')
   }
 
+  
+
   const handleLogin = () => {
+    setloading(true)
     clearErrors()
     fire
       .auth()
@@ -98,6 +102,7 @@ const Signin = () => {
             break
         }
       })
+    setloading(false)
   }
 
   const handleSignup = () => {
@@ -155,6 +160,7 @@ const Signin = () => {
           passwordError={passwordError}
           googlesignin={googlesignin}
           githubsignin={githubsignin}
+          loading={loading}
         />
       )}
     </div>
