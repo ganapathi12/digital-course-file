@@ -36,7 +36,7 @@ const Hero = ({ handleLogout }) => {
         <div className='d-flex align-items-center'>
           <FolderNav currentFolder={folder} />
           <AddFolder currentFolder={folder} />
-          {childFolders.length == 0 && folder.id == null && (
+          {childFolders.length == 0 && folder.id != null && (
             <Deffolders currentFolder={folder} />
           )}
         </div>

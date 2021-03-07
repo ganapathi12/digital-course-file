@@ -23,14 +23,13 @@ const Routes = () => {
       }
     })
   }
-
   useEffect(() => {
     authListener()
   }, [])
-  const handleLogout = () => {
-    fire.auth().signOut()
-    //this.props.history.push('/')
-  }
+  // const handleLogout = () => {
+  //   fire.auth().signOut()
+  //   //this.props.history.push('/')
+  // }
   return (
     <BrowserRouter>
       <section className='hero'>
@@ -38,10 +37,9 @@ const Routes = () => {
           <Navbar.Brand as={Link} to='/'>
             <h2>Course File System</h2>
           </Navbar.Brand>
-
           {user && (
-              <Link to="/">
-            <button  className='logoutbutton' onClick={()=>handleLogout}>
+              <Link to="/signin">
+            <button  className='logoutbutton' onClick={()=>fire.auth().signOut()}>
               Logout
             </button></Link>
           )}
