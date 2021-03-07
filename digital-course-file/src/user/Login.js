@@ -1,8 +1,7 @@
-import React, { useState, useEffect } from 'react'
+import React from 'react'
 import GoogleButton from 'react-google-button'
 import GithubButton from 'react-github-login-button'
 import { Link } from 'react-router-dom'
-import Loader from 'react-loader-spinner'
 
 
 const Login = (props) => {
@@ -19,26 +18,8 @@ const Login = (props) => {
     passwordError,
     googlesignin,
     githubsignin,
-    loading,
   } = props
 
-  useEffect(() => {
-    if (loading) {
-    return (
-      <>
-        <div className='centered'>
-          <Loader
-            type='Puff'
-            color='#00BFFF'
-            height={100}
-            width={100}
-            timeout={3000} //3 secs
-          />
-        </div>
-      </>
-    )
-  }
-  }, [loading])
   
   return (
     <section className='login'>
