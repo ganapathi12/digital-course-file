@@ -13,7 +13,6 @@ import Loader from 'react-loader-spinner'
 const Hero = ({ handleLogout }) => {
   const { folderId } = useParams()
   const { folder, childFolders } = useFolder(folderId)
-  console.log(folder);
 
   if (!folder) {
     return (
@@ -37,7 +36,7 @@ const Hero = ({ handleLogout }) => {
         <div className='d-flex align-items-center'>
           <FolderNav currentFolder={folder} />
           <AddFolder currentFolder={folder} />
-          {childFolders.length == 0 && folder.parentId == null && (
+          {childFolders.length == 0 && folder.parentId == null && folder.id!=null && (
             <Deffolders currentFolder={folder} />
           )}
         </div>
