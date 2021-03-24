@@ -9,7 +9,7 @@ import Deffolders from './Deffolders'
 import { useParams,useLocation } from 'react-router-dom'
 import copyright from './copyright' 
 import { Link } from 'react-router-dom'
-import File from 'digital-course-file/digital-course-file/src/user/File'
+import File from './File'
 import FontAwesomeIcon from '@fortawesome/react-fontawesome';
 import firebase from "../fire";
 
