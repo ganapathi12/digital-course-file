@@ -5,11 +5,9 @@ import { ROOT_FOLDER, useFolder } from '.././hooks/useFolder'
 import Folder from './Folder'
 import FolderNav from './FolderNav'
 import Deffolders from './Deffolders'
-import DeleteFolder from './DeleteFolder'
 import { useParams } from 'react-router-dom'
 import copyright from './copyright'
 import { Link } from 'react-router-dom'
-import File from './File'
 import FontAwesomeIcon from '@fortawesome/react-fontawesome';
 import firebase from "../fire";
 
