@@ -4,7 +4,7 @@ import firebase from 'firebase'
 import Loader from "react-loader-spinner";
 
 
-export const ROOT_FOLDER = {name: 'Root', id : null , path : [] };
+export const ROOT_FOLDER = {name: 'Root', id : null , path : [] , parents : []};
 
 export function useFolder( folderId = null, folder= null) {
 
