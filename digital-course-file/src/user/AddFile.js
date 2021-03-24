@@ -3,7 +3,7 @@ import ReactDOM from "react-dom"
 import { faFileUpload } from "@fortawesome/free-solid-svg-icons"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { storage, database } from '../fire.js'
-import { ROOT_FOLDER } from "C:/Users/Dell/Desktop/try/digital-course-file/digital-course-file/src/hooks/useFolder"
+import { ROOT_FOLDER } from "digital-course-file/digital-course-file/src/hooks/useFolder"
 import { v4 as uuidV4 } from "uuid"
 import { ProgressBar, Toast } from "react-bootstrap"
 import firebase from 'firebase'
