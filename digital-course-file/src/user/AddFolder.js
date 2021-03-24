@@ -28,13 +28,19 @@ export default function AddFolder( {currentFolder} ){
           path.push( { name : currentFolder.name , id : currentFolder.id} )
       }
 
+      const parents =  [...currentFolder.parents];
+      if(currentFolder!== ROOT_FOLDER){
+          parents.push(currentFolder.id)
+      }
+
       e.preventDefault();
       database.folders.add({
         name : name,
         parentId : currentFolder.id,
         userId: firebase.auth().currentUser.uid,
         path : path,
-        createdAt : database.getTime()
+        createdAt : database.getTime(),
+        parents : parents,
       })
       setName("");
       closeModal();
