@@ -1,5 +1,7 @@
 import firebase from 'firebase'
-// import "firebase/firestore"
+import "firebase/auth"
+import "firebase/firestore"
+import "firebase/storage"
 
 // Your web app's Firebase configuration
   var firebaseConfig = {
@@ -23,5 +25,6 @@ import firebase from 'firebase'
     getTime : firebase.firestore.FieldValue.serverTimestamp,
     formatDoc : doc => { return {id : doc.id, ...doc.data()} },
   }
-
+  export const storage = fire.storage()
+  export const auth = fire.auth()
   export default fire;
