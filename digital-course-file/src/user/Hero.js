@@ -8,8 +8,7 @@ import Deffolders from './Deffolders'
 import { useParams } from 'react-router-dom'
 import copyright from './copyright'
 import { Link } from 'react-router-dom'
-import FontAwesomeIcon from '@fortawesome/react-fontawesome';
-import firebase from "../fire";
+import {Loader} from 'react-loader-spinner'
 
 const Hero = ({ handleLogout }) => {
   const { folderId } = useParams()
