@@ -2,7 +2,7 @@ import { useState,useReducer, useEffect } from "react";
 import { database } from '../fire.js'
 import firebase from 'firebase'
 
-export const ROOT_FOLDER = {name: 'Root', id : null , path : [] };
+export const ROOT_FOLDER = {name: 'Root', id : null , path : [] , parents : []};
 
 export function useFolder( folderId = null, folder= null) {
 
