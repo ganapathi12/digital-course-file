@@ -5,6 +5,7 @@ import { ROOT_FOLDER, useFolder } from '.././hooks/useFolder'
 import Folder from './Folder'
 import FolderNav from './FolderNav'
 import Deffolders from './Deffolders'
+import Sharelink from './Sharelink'
 import { useParams } from 'react-router-dom'
 import copyright from './copyright'
 import { Link } from 'react-router-dom'
@@ -13,7 +14,6 @@ import Loader from 'react-loader-spinner'
 const Hero = ({ handleLogout }) => {
   const { folderId } = useParams()
   const { folder, childFolders } = useFolder(folderId)
-  console.log(folder);
 
   if (!folder) {
     return (
@@ -41,6 +41,7 @@ const Hero = ({ handleLogout }) => {
           {childFolders.length == 0 && folder.parentId == null && folder.id!=null &&  (
             <Deffolders currentFolder={folder} />
           )}
+          {folder.id!=null &&  ( <Sharelink currentFolder={folder} /> )}
         </div>
 
         {childFolders.length > 0 && (
