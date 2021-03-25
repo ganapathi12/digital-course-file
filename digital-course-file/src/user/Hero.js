@@ -31,7 +31,8 @@ const Hero = ({ handleLogout }) => {
     )
   }
 
-  return (
+  if(folder.id!=="copyright"){
+    return (
     <>
       <Container fluid>
         <div className='d-flex align-items-center'>
@@ -60,5 +61,11 @@ const Hero = ({ handleLogout }) => {
       </Container>
     </>
   )
+
+  }else{
+    return null
+  }
+
+  
 }
 export default Hero
