@@ -38,7 +38,7 @@ const Hero = ({ handleLogout }) => {
           <FolderNav currentFolder={folder} />
           <AddFolder currentFolder={folder} />
           
-          {childFolders.length == 0 && folder.parentId == null && (
+          {childFolders.length == 0 && folder.parentId == null && folder.id!=null &&  (
             <Deffolders currentFolder={folder} />
           )}
         </div>
