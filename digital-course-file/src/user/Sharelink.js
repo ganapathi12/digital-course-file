@@ -1,7 +1,7 @@
 import { React, useState } from 'react'
 import { Button, Modal, Form } from 'react-bootstrap'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faLink,faPaste } from '@fortawesome/free-solid-svg-icons'
+import { faLink, faPaste } from '@fortawesome/free-solid-svg-icons'
 import { CopyToClipboard } from 'react-copy-to-clipboard'
 
 export default function Sharelink({ currentFolder }) {
@@ -33,14 +33,13 @@ export default function Sharelink({ currentFolder }) {
               {'www.dcfstudentview.com/' + String(currentFolder.id)}
               <p></p>
               <CopyToClipboard
-              text={'www.dcfstudentview.com/' + String(currentFolder.id)}
-              onCopy={() =>setClipBoard(true)}
-            >
-              <FontAwesomeIcon icon={faPaste} />
-            </CopyToClipboard>
-            {clipBoard ? <span style={{color: 'red'}}>Copied.</span> : null}
+                text={'www.dcfstudentview.com/' + String(currentFolder.id)}
+                onCopy={() => setClipBoard(true)}
+              >
+                <FontAwesomeIcon icon={faPaste} />
+              </CopyToClipboard>
+              {clipBoard ? <span style={{ color: 'red' }}>Copied.</span> : null}
             </Form.Label>
-            
           </Form.Group>
         </Modal.Body>
         <Modal.Footer>
