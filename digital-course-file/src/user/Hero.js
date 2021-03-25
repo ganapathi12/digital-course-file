@@ -14,7 +14,6 @@ import Loader from 'react-loader-spinner'
 const Hero = ({ handleLogout }) => {
   const { folderId } = useParams()
   const { folder, childFolders } = useFolder(folderId)
-  console.log(folder);
 
   if (!folder) {
     return (
