@@ -38,7 +38,7 @@ export default function Sharelink({ currentFolder }) {
               >
                 <FontAwesomeIcon icon={faPaste} />
               </CopyToClipboard>
-              {clipBoard ? <span style={{ color: 'red' }}>Copied.</span> : null}
+              {clipBoard ? <span style={{ color: 'red' }}> Copied.</span> : null}
             </Form.Label>
           </Form.Group>
         </Modal.Body>
