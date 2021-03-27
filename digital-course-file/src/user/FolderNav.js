@@ -10,7 +10,6 @@ export default function FolderNav( {currentFolder} ) {
         path = [...path,...currentFolder.path];
     }
 
-    
     return(
         <Breadcrumb
             className="flex-grow-1"
