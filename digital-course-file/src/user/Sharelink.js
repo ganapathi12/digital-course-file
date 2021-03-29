@@ -30,10 +30,10 @@ export default function Sharelink({ currentFolder }) {
           <Form.Group>
             <Form.Label>Sharable link for this folder :</Form.Label>
             <Form.Label>
-              {'www.dcfstudentview.com/' + String(currentFolder.id)}
+              {'https://dcfstudentsview.netlify.app/folders/' + String(currentFolder.id)}
               <p></p>
               <CopyToClipboard
-                text={'www.dcfstudentview.com/' + String(currentFolder.id)}
+                text={'https://dcfstudentsview.netlify.app/folders/' + String(currentFolder.id)}
                 onCopy={() => setClipBoard(true)}
               >
                 <FontAwesomeIcon icon={faPaste} />
