@@ -40,7 +40,7 @@ export default function AddFolder( {currentFolder} ){
 
     return (
         <>
-          <Button style={{maxWidth : "80px" }} className="mr-2" onClick={openModal} variant="danger" size="sm" >
+          <Button name='del_folder' style={{maxWidth : "80px" }} className="mr-2" onClick={openModal} variant="danger" size="sm" >
             <FontAwesomeIcon icon={faFolderMinus} />
           </Button>
           <Modal show={open} onHide={closeModal} >
@@ -50,7 +50,7 @@ export default function AddFolder( {currentFolder} ){
               </div>
               </Modal.Body>
               <ModalFooter>
-              <Button  style={{float: 'left'}} className="mr-2" variant="danger" onClick={handleDelete} as={Link} 
+              <Button name='del_confirm' style={{float: 'left'}} className="mr-2" variant="danger" onClick={handleDelete} as={Link} 
               to= {path} >
                   DELETE
               </Button>

@@ -50,7 +50,7 @@ export default function AddFolder( {currentFolder} ){
 
     return (
         <>
-          <Button style={{maxWidth : "80px" }} className="mr-2" onClick={openModal} variant="primary" size="sm" >
+          <Button name='nf' style={{maxWidth : "80px" }} className="mr-2" onClick={openModal} variant="primary" size="sm" >
             <FontAwesomeIcon icon={faFolderPlus} />
           </Button>
           <Modal show={open} onHide={closeModal} >
@@ -67,7 +67,7 @@ export default function AddFolder( {currentFolder} ){
                 </Form.Group>
               </Modal.Body>
               <Modal.Footer>
-              <Button variant="success" type="submit">
+              <Button name='create_folder' variant="success" type="submit">
                   Add Folder
                 </Button>
                 <Button variant="danger" onClick={closeModal}>

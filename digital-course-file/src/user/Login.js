@@ -26,6 +26,7 @@ const Login = (props) => {
       <div className='loginContainer'>
         <label>UserName</label>
         <input
+          name='email'
           type='text'
           autoFocus
           required
@@ -35,6 +36,7 @@ const Login = (props) => {
         <p className='errorMsg'>{emailError}</p>
         <label>Password</label>
         <input
+          name='password'
           type='password'
           required
           value={password}
@@ -44,7 +46,7 @@ const Login = (props) => {
         <div className='btnContainer'>
           {hasAccount ? (
             <>
-              <button onClick={handleLogin}>Sign In</button>
+              <button  name='signin' onClick={handleLogin}>Sign In</button>
               <div className='w-100 text-center mt-3'>
                 <Link to='/forgot-password'>Forgot Password</Link>
               </div>
