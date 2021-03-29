@@ -10,8 +10,8 @@ import copyright from './user/copyright'
 import { Link } from 'react-router-dom'
 import { Container, Button, Navbar, Nav } from 'react-bootstrap'
 import fire from './fire'
-import ForgotPassword from "./user/ForgotPassword"
-
+import ForgotPassword from './user/ForgotPassword'
+import { LinkContainer } from 'react-router-bootstrap'
 
 const Routes = () => {
   const [user, setUser] = useState('')
@@ -39,26 +39,31 @@ const Routes = () => {
             <h2>Course File System</h2>
           </Navbar.Brand>
           {user && (
-              <Link to="/signin">
-            <button  className='logoutbutton' onClick={()=>fire.auth().signOut()}>
-              Logout
-            </button></Link>
+            <Link to='/signin'>
+              <button
+                className='logoutbutton'
+                onClick={() => fire.auth().signOut()}
+              >
+                Logout
+              </button>
+            </Link>
           )}
         </nav>
       </section>
       <Switch>
         {/*Folders*/}
-        <Route path='/folder/:folderId' component={Hero} />
+        <Route path='/folder/:folderId' exact component={Hero} />
         <Route path='/' exact component={Signin} />
         <Route path='/signin' exact component={Signin} />
-        <Route path='/copyright' exact component={copyright} />
+        <Route path='/copyright' component={copyright} />
+        <Route path='/folder/copyright' component={copyright} />
         <Route path='/forgot-password' component={ForgotPassword} />
       </Switch>
-       <Navbar fixed='bottom' variant='light' bg='light'>
+      <Navbar fixed='bottom' variant='light' bg='light'>
         <Container className='ml-sm-2'>
-          <Nav.Link eventKey={2} href='copyright'>
-            &copy; Digital Course File Group 2
-          </Nav.Link>
+          <LinkContainer to='/copyright'>
+            <Nav.Link>&copy; Digital Course File Group 2</Nav.Link>
+          </LinkContainer>
         </Container>
       </Navbar>
     </BrowserRouter>
