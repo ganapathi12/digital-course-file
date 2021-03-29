@@ -8,11 +8,12 @@ export const ROOT_FOLDER = {name: 'Root', id : null , path : [] , parents : []};
 export function useFolder( folderId = null, folder= null) {
 
     // const {currentUser} = firebase.auth.currentUser;
-
+    
     const ACTIONS = {
         SELECT_FOLDER : 'select-folder',
         UPDATE_FOLDER : 'update-folder',
         SET_CHILD_FOLDERS : 'set_child_folders',
+        SET_CHILD_FILES: "set-child-files",
     }
 
     function reducer( state, { type,payload } ){
@@ -36,6 +37,11 @@ export function useFolder( folderId = null, folder= null) {
                 return{
                     ...state,
                     childFolders : payload.childFolders,
+                }; 
+            case ACTIONS.SET_CHILD_FILES:
+                return {
+                    ...state,
+                    childFiles: payload.childFiles,
                 };    
 
             default:
@@ -104,6 +110,23 @@ export function useFolder( folderId = null, folder= null) {
                 })
             })
     },[folderId])
+    useEffect(() => {
+        if(firebase.auth().currentUser)
+        {
+                return (
+          database.files
+            .where("folderId", "==", folderId)
+            .where("userId", "==", firebase.auth().currentUser.uid)
+            .onSnapshot(snapshot => {
+              dispatch({
+                type: ACTIONS.SET_CHILD_FILES,
+                payload: { childFiles: snapshot.docs.map(database.formatDoc) },
+              })
+            })
+        )
+        }
+        
+      }, [folderId])
 
     return state;
 }
