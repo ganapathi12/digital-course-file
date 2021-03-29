@@ -101,8 +101,8 @@ export default function AddFile({ currentFolder }) {
           <div
             style={{
               position: "absolute",
-              bottom: "1rem",
-              right: "1rem",
+              bottom: "4rem",
+              right: "2rem",
               maxWidth: "250px",
             }}
           >
