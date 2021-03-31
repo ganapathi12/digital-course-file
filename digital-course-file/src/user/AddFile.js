@@ -91,6 +91,7 @@ export default function AddFile({ currentFolder }) {
       <label className="btn btn-outline-success btn-sm m-0 mr-2">
         <FontAwesomeIcon icon={faFileUpload} />
         <input
+          name="upload"
           type="file"
           onChange={handleUpload}
           style={{ opacity: 0, position: "absolute", left: "-9999px" }}
