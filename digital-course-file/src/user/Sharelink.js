@@ -17,6 +17,7 @@ export default function Sharelink({ currentFolder }) {
   return (
     <>
       <Button
+        name='share_link'
         style={{ maxWidth: '80px' }}
         onClick={openModal}
         className='mr-2'
