@@ -62,7 +62,7 @@ const Login = (props) => {
             </>
           ) : (
             <>
-              <button onClick={handleSignup}>Sign up</button>
+              <button name='signup' onClick={handleSignup}>Sign up</button>
               
               <p>
                 Have an account ?{' '}
