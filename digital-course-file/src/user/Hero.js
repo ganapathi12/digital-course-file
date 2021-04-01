@@ -15,6 +15,7 @@ import 'firebase/storage';
 import ReactDOM from "react-dom"
 import firebase from "../fire";
 import Loader from 'react-loader-spinner'
+import Dropzone from './Dropzone'
 
 
 const Hero = ({ handleLogout }) => {
@@ -40,7 +41,9 @@ const Hero = ({ handleLogout }) => {
 
   if(folder.id!=="copyright"){
     return (
+
     <>
+    
       <Container fluid>
         <div className='d-flex align-items-center'>
           <FolderNav currentFolder={folder} />
@@ -52,6 +55,7 @@ const Hero = ({ handleLogout }) => {
           {folder.id!=null &&  ( <Sharelink currentFolder={folder} /> )}
           {folder.id!=null &&  ( <Deletefolder currentFolder={folder} /> )}
           {folder.id!=null &&  ( <AddFile currentFolder={folder} /> )}
+          {folder.id!=null &&  ( <Dropzone currentFolder={folder} /> )}
         </div>
 
         {childFolders.length > 0 && (
