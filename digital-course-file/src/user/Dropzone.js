@@ -41,6 +41,7 @@ export default function Dropzone({ currentFolder }) {
   function uploadinghelp() {
     const files = acceptedFiles.map((file) => handleUpload(file))
     closeModal()
+    return
   }
 
   function handleUpload(file) {
