@@ -16,6 +16,7 @@ import ReactDOM from "react-dom"
 import firebase from "../fire";
 import Loader from 'react-loader-spinner'
 
+
 const Hero = ({ handleLogout }) => {
   const { folderId } = useParams()
   const { state = {} } = useLocation()
