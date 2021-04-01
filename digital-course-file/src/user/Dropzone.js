@@ -51,13 +51,10 @@ export default function Dropzone({ currentFolder }) {
       ...prevUploadingFiles,
       { id: id, name: file.name, progress: 0, error: false },
     ])
-    const filePath =
-      currentFolder === ROOT_FOLDER
-        ? `${currentFolder.path.join('/')}/${file.name}`
-        : `${currentFolder.path.join('/')}/${currentFolder.name}/${file.name}`
+    const uniqueid = uuidV4()
 
     const uploadTask = storage
-      .ref(`/files/${firebase.auth().currentUser.uid}/${filePath}`)
+      .ref(`/files/${firebase.auth().currentUser.uid}/${uniqueid}`)
       .put(file)
 
     uploadTask.on(
@@ -105,6 +102,7 @@ export default function Dropzone({ currentFolder }) {
                 database.files.add({
                   url: url,
                   name: file.name,
+                  uniqueid:uniqueid,
                   createdAt: database.getTime(),
                   folderId: currentFolder.id,
                   userId: firebase.auth().currentUser.uid,
