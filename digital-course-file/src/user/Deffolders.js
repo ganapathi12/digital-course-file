@@ -6,7 +6,7 @@ import { database } from '../fire.js'
 import firebase from 'firebase'
 import { ROOT_FOLDER } from '../hooks/useFolder'
 export default function Deffolders( {currentFolder} ){
-  function openModel(){
+  function createdef(){
     if(currentFolder == null) return;
             const path =  [...currentFolder.path];
             if(currentFolder !== ROOT_FOLDER){
@@ -16,74 +16,21 @@ export default function Deffolders( {currentFolder} ){
           if(currentFolder!== ROOT_FOLDER){
               parents.push(currentFolder.id)
           }
+          var deffolderlist=["Program Outcomes","Course Outcomes","Continous Assesment","Attendance","P1 materials","P2 materials","EndSem materials","Past Papers"];
+          for (var i in deffolderlist){
               database.folders.add({
-                  name : "Program Outcomes",
-                  parentId : currentFolder.id,
-                  userId: firebase.auth().currentUser.uid,
-                  path : path,
-                  createdAt : database.getTime(),
-                  parents : parents,              
-              })
-              database.folders.add({
-                  name : "Course Outcomes",
-                  parentId : currentFolder.id,
-                  userId: firebase.auth().currentUser.uid,
-                  path : path,
-                  createdAt : database.getTime(),
-                  parents : parents,              
-              })
-              database.folders.add({
-                name : "Past Papers",
-                parentId : currentFolder.id,
-                userId: firebase.auth().currentUser.uid,
-                path : path,
-                createdAt : database.getTime(),
-                parents : parents,              
-              })
-              database.folders.add({
-                name : "Continous Assesment",
-                parentId : currentFolder.id,
-                userId: firebase.auth().currentUser.uid,
-                path : path,
-                createdAt : database.getTime(),
-                parents : parents,              
-            })
-            database.folders.add({
-              name : "Attendance",
+              name : deffolderlist[i],
               parentId : currentFolder.id,
               userId: firebase.auth().currentUser.uid,
               path : path,
               createdAt : database.getTime(),
               parents : parents,              
-            })
-          database.folders.add({
-            name : "P1 materials",
-            parentId : currentFolder.id,
-            userId: firebase.auth().currentUser.uid,
-            path : path,
-            createdAt : database.getTime(),
-            parents : parents,              
-          })
-        database.folders.add({
-          name : "P2 materials",
-          parentId : currentFolder.id,
-          userId: firebase.auth().currentUser.uid,
-          path : path,
-          createdAt : database.getTime(),
-          parents : parents,              
-        })
-      database.folders.add({
-        name : "EndSem materials",
-        parentId : currentFolder.id,
-        userId: firebase.auth().currentUser.uid,
-        path : path,
-        createdAt : database.getTime(),
-        parents : parents,              
-      })
-    }
+          });
+        }
+      }
   return (
     <>
-      <Button name='special_folders' style={{maxWidth : "80px"}} className="mr-2" onClick={openModel} variant="primary" size="sm">
+      <Button name='special_folders' style={{maxWidth : "80px"}} className="mr-2" onClick={createdef} variant="primary" size="sm">
         <FontAwesomeIcon icon={faBolt} />
       </Button>
     </>
