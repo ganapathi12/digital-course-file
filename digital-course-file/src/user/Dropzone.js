@@ -39,7 +39,9 @@ export default function Dropzone({ currentFolder }) {
   }
 
   function uploadinghelp() {
-    const files = acceptedFiles.map((file) => handleUpload(file))
+    const files = acceptedFiles.map((file) => {
+      return handleUpload(file)
+    })
     closeModal()
     return
   }
@@ -103,7 +105,7 @@ export default function Dropzone({ currentFolder }) {
                 database.files.add({
                   url: url,
                   name: file.name,
-                  uniqueid:uniqueid,
+                  uniqueid: uniqueid,
                   createdAt: database.getTime(),
                   folderId: currentFolder.id,
                   userId: firebase.auth().currentUser.uid,
