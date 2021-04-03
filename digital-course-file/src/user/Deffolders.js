@@ -1,11 +1,18 @@
-import { React , useState } from "react";
+import { React , useState,Fragment } from "react";
 import { Button,Modal,Form} from 'react-bootstrap';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBolt } from "@fortawesome/free-solid-svg-icons";
 import { database } from '../fire.js'
 import firebase from 'firebase'
-import { ROOT_FOLDER } from '../hooks/useFolder'
+import { ROOT_FOLDER } from '../hooks/useFolder';
+import ReactTooltip from 'react-tooltip';
+
 export default function Deffolders( {currentFolder} ){
+
+  const divStyle = {
+    fontWeight: 'bold',
+    color: 'black'
+  };
   function createdef(){
     if(currentFolder == null) return;
             const path =  [...currentFolder.path];
@@ -29,10 +36,14 @@ export default function Deffolders( {currentFolder} ){
         }
       }
   return (
-    <>
-      <Button name='special_folders' style={{maxWidth : "80px"}} className="mr-2" onClick={createdef} variant="primary" size="sm">
+    <Fragment>
+      <Button data-tip data-for='defaultfolder' name='special_folders' style={{maxWidth : "80px"}} className="mr-2" onClick={createdef} variant="primary" size="sm">
         <FontAwesomeIcon icon={faBolt} />
       </Button>
-    </>
+
+      <ReactTooltip id='defaultfolder' type='success' place='bottom' effect='solid'>
+            <span  style={divStyle}>Create Default Folders</span>
+      </ReactTooltip>
+    </Fragment>
   );
 }

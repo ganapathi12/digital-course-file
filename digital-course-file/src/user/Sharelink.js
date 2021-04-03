@@ -1,10 +1,15 @@
-import { React, useState } from 'react'
+import { React, useState,Fragment } from 'react'
 import { Button, Modal, Form } from 'react-bootstrap'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faLink, faPaste } from '@fortawesome/free-solid-svg-icons'
 import { CopyToClipboard } from 'react-copy-to-clipboard'
+import ReactTooltip from 'react-tooltip';
 
 export default function Sharelink({ currentFolder }) {
+  const divStyle = {
+    fontWeight: 'bold',
+    color: 'black'
+  };
   const [open, setOpen] = useState(false)
   const [clipBoard, setClipBoard] = useState(false)
   function openModal() {
@@ -15,8 +20,9 @@ export default function Sharelink({ currentFolder }) {
   }
 
   return (
-    <>
+    <Fragment>
       <Button
+        data-tip data-for='sharefolderlink'
         name='share_link'
         style={{ maxWidth: '80px' }}
         onClick={openModal}
@@ -49,6 +55,10 @@ export default function Sharelink({ currentFolder }) {
           </Button>
         </Modal.Footer>
       </Modal>
-    </>
+
+      <ReactTooltip id='sharefolderlink' type='success' place='bottom' effect='solid'>
+            <span style={divStyle}>Share Folder Link</span>
+      </ReactTooltip>
+    </Fragment>
   )
 }

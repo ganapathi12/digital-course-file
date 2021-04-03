@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import {React,useState,useEffect,Fragment } from 'react'
 import { Link } from 'react-router-dom'
 import fire from '../fire'
 import firebase from 'firebase'
@@ -22,6 +22,7 @@ export default function ForgotPassword() {
     setEmailError('Check your inbox for furthur instructions')
   }
   return (
+    <Fragment>
     <section className='login'>
       <div className='loginContainer'>
         <p className='errorMsg'>{emailError}</p>
@@ -44,5 +45,6 @@ export default function ForgotPassword() {
         </div>
       </div>
     </section>
+    </Fragment>
   )
 }

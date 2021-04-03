@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import {React,useState,Fragment } from 'react'
 import ReactDOM from 'react-dom'
 import { faFileUpload } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
@@ -6,11 +6,15 @@ import { storage, database } from '../fire.js'
 import { ROOT_FOLDER } from '../hooks/useFolder'
 import { v4 as uuidV4 } from 'uuid'
 import { ProgressBar, Toast } from 'react-bootstrap'
+import ReactTooltip from 'react-tooltip';
 import firebase from 'firebase'
 
 export default function AddFile({ currentFolder }) {
   const [uploadingFiles, setUploadingFiles] = useState([])
-
+  const divStyle = {
+    fontWeight: 'bold',
+    color: 'black'
+  };
   function handleUpload(e) {
     const file = e.target.files[0]
     if (currentFolder == null || file == null) return
@@ -84,8 +88,8 @@ export default function AddFile({ currentFolder }) {
   }
 
   return (
-    <>
-      <label className='btn btn-outline-success btn-sm m-0 mr-2'>
+    <Fragment>
+        <label className='btn btn-outline-success m-0 mr-2' data-tip data-for='uploadfile'>        
         <FontAwesomeIcon icon={faFileUpload} />
         <input
           name='upload'
@@ -138,6 +142,10 @@ export default function AddFile({ currentFolder }) {
           </div>,
           document.body
         )}
-    </>
+
+      <ReactTooltip id='uploadfile' type='success' place='bottom' effect='solid'>
+            <span style={divStyle}>Upload File</span>
+      </ReactTooltip>
+    </Fragment>
   )
 }

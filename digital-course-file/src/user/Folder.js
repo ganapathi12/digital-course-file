@@ -1,4 +1,4 @@
-import { React,useState } from "react";
+import { React,useState,Fragment } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faFolder } from "@fortawesome/free-solid-svg-icons"
 import { Button,Modal,Form } from "react-bootstrap";
@@ -82,6 +82,7 @@ export default function Folder ({folder}) {
       }
 
     return (
+      <Fragment>
         <div>
         <Button 
             onContextMenu={displayMenu}
@@ -147,6 +148,7 @@ export default function Folder ({folder}) {
           </Modal>
 
         </div>
+        </Fragment>
     );
 
 }
