@@ -35,6 +35,18 @@ export default function copyright() {
   <p>Github : @nishitadash</p>
   <p>From : India</p>
   <br/>
+  <h3>Sudhamshu Akula</h3>
+  <p>Contact : sudhamshakula@gmail.com</p>
+  <p>Website : https://akula0611.github.io/</p>
+  <p>Github : @Akula0611</p>
+  <p>From : India</p>
+  <br/>
+  <h3>Asritha V</h3>
+  <p>Contact : asrithavemireddu989@gmail.com</p>
+  <p>Website : https://asrithareddy.github.io/</p>
+  <p>Github : @asritha reddy</p>
+  <p>From : India</p>
+  <br/>
   <h2>THANKS</h2>
   <p>Mr. Dr. Venkataraman D (CSE) </p>
   <br/>
