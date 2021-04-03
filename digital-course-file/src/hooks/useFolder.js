@@ -3,7 +3,7 @@ import { database } from '../fire.js'
 import firebase from 'firebase'
 import Loader from "react-loader-spinner";
 
-export const ROOT_FOLDER = {name: 'Root', id : null , path : [] , parents : []};
+export const ROOT_FOLDER = {name: 'Courses', id : null , path : [] , parents : []};
 
 export function useFolder( folderId = null, folder= null) {
 
