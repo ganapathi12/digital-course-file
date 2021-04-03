@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import {React,useState,useEffect,Fragment } from 'react'
 import { Button, Modal, ModalFooter } from 'react-bootstrap'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faHandRock } from '@fortawesome/free-solid-svg-icons'
@@ -11,9 +11,13 @@ import { ProgressBar, Toast } from 'react-bootstrap'
 import { storage } from '../fire.js'
 import { ROOT_FOLDER } from '../hooks/useFolder'
 import ReactDOM from 'react-dom'
+import ReactTooltip from 'react-tooltip';
 
-// {currentFolder}
 export default function Dropzone({ currentFolder }) {
+  const divStyle = {
+    fontWeight: 'bold',
+    color: 'black'
+  };
   const [open, setOpen] = useState(false)
   const temp_parent = '' + currentFolder.parentId
   const [path, setpath] = useState(``)
@@ -118,8 +122,9 @@ export default function Dropzone({ currentFolder }) {
   }
 
   return (
-    <>
+    <Fragment>
       <Button
+        data-tip data-for='dragndrop'
         name='drag-and-drop'
         style={{ maxWidth: '80px' }}
         className='mr-2'
@@ -217,6 +222,10 @@ export default function Dropzone({ currentFolder }) {
           </div>,
           document.body
         )}
-    </>
+
+          <ReactTooltip id='dragndrop' type='success' place='bottom' effect='solid'>
+            <span style={divStyle}>Drag N Drop</span>
+          </ReactTooltip>
+    </Fragment>
   )
 }

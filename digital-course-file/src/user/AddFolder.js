@@ -1,13 +1,17 @@
-import { React , useState } from "react";
+import { React , useState, Fragment } from "react";
 import { Button,Modal,Form} from 'react-bootstrap';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faFolderPlus } from "@fortawesome/free-solid-svg-icons";
 import { database } from '../fire.js'
 import firebase from 'firebase'
 import { ROOT_FOLDER } from '.././hooks/useFolder'
+import ReactTooltip from 'react-tooltip';
 
-// {currentFolder}
 export default function AddFolder( {currentFolder} ){
+    const divStyle = {
+      fontWeight: 'bold',
+      color: 'black'
+    };
     const [open, setOpen] = useState(false);
     const [name, setName] = useState("");
 
@@ -49,8 +53,8 @@ export default function AddFolder( {currentFolder} ){
 
 
     return (
-        <>
-          <Button name='nf' style={{maxWidth : "80px" }} className="mr-2" onClick={openModal} variant="primary" size="sm" >
+        <Fragment>
+          <Button data-tip data-for='addfolder' name='nf' style={{maxWidth : "80px" }} className="mr-2" onClick={openModal} variant="primary" size="sm" >
             <FontAwesomeIcon icon={faFolderPlus} />
           </Button>
           <Modal show={open} onHide={closeModal} >
@@ -76,7 +80,11 @@ export default function AddFolder( {currentFolder} ){
               </Modal.Footer>
             </Form>
           </Modal>
-        </>
+
+          <ReactTooltip id='addfolder' type='success' place='bottom' effect='solid'>
+            <span style={divStyle}>Add Folder</span>
+          </ReactTooltip>
+        </Fragment>
       );
 }
 

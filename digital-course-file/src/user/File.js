@@ -1,6 +1,6 @@
 import { faFile } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { React, useState } from 'react'
+import { React, useState,Fragment } from 'react'
 import { storage, storageRef, firestore1, database } from '../fire.js'
 import Axios from 'axios'
 import fileDownload from 'js-file-download'
@@ -98,6 +98,7 @@ export default function File({ file }) {
   }
 
   return (
+    <Fragment>
     <div id='root'>
       <a
         onContextMenu={displayMenu}
@@ -156,5 +157,6 @@ export default function File({ file }) {
         </Form>
       </Modal>
     </div>
+    </Fragment>
   )
 }

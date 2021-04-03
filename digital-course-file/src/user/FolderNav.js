@@ -1,4 +1,4 @@
-import { react } from 'react'
+import { react,Fragment } from 'react'
 import { Breadcrumb } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
 import { ROOT_FOLDER } from '../hooks/useFolder'
@@ -11,6 +11,7 @@ export default function FolderNav({ currentFolder }) {
   }
 
   return (
+    <Fragment>
     <Breadcrumb
       className='flex-grow-1'
       listProps={{ className: 'bg-white pl-0 m-0' }}
@@ -38,5 +39,6 @@ export default function FolderNav({ currentFolder }) {
         </Breadcrumb.Item>
       )}
     </Breadcrumb>
+    </Fragment>
   )
 }

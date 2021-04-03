@@ -1,4 +1,4 @@
-import { React , useState } from "react";
+import { React , useState,Fragment } from "react";
 import { Button, Modal, ModalFooter} from 'react-bootstrap';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faAlignCenter, faFolderMinus } from "@fortawesome/free-solid-svg-icons";
@@ -6,7 +6,8 @@ import { database } from '../fire.js'
 import firebase from 'firebase'
 import { Link } from "react-router-dom";
 import "firebase/storage";
-// {currentFolder}
+import ReactTooltip from 'react-tooltip';
+
 export default function AddFolder( {currentFolder} ){
     const [open, setOpen] = useState(false);
     const temp_parent = ""+currentFolder.parentId;
@@ -67,8 +68,8 @@ export default function AddFolder( {currentFolder} ){
   }
 
     return (
-        <>
-          <Button name='del_folder' style={{maxWidth : "80px" }} className="mr-2" onClick={openModal} variant="danger" size="sm" >
+        <Fragment>
+          <Button data-tip data-for='deletefolder' name='del_folder' style={{maxWidth : "80px" }} className="mr-2" onClick={openModal} variant="danger" size="sm" >
             <FontAwesomeIcon icon={faFolderMinus} />
           </Button>
           <Modal show={open} onHide={closeModal} >
@@ -87,6 +88,10 @@ export default function AddFolder( {currentFolder} ){
               </Button>
               </ModalFooter>
           </Modal>
-        </>
+
+          <ReactTooltip id='deletefolder' type='error' place='bottom' effect='solid'>
+            <span style={{fontWeight:'bold'}}>Delete Folder</span>
+          </ReactTooltip>
+        </Fragment>
       );
 }

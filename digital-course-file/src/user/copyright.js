@@ -23,6 +23,18 @@ export default function copyright() {
   <p>Github : @balajidass07</p>
   <p>From : India</p>
   <br/>
+  <h3>Nidharshan A</h3>
+  <p>Contact : nidharshan2001@gmail.com</p>
+  <p>Website : https://cbenu4cse18036.github.io/</p>
+  <p>Github : @cbenu4cse18036</p>
+  <p>From : India</p>
+  <br/>
+  <h3>Nishita Dash</h3>
+  <p>Contact : nishita73081@gmail.com</p>
+  <p>Website : https://nishitadash.github.io/</p>
+  <p>Github : @nishitadash</p>
+  <p>From : India</p>
+  <br/>
   <h2>THANKS</h2>
   <p>Mr. Dr. Venkataraman D (CSE) </p>
   <br/>
