@@ -5,7 +5,7 @@ import Loader from "react-loader-spinner";
 
 export const ROOT_FOLDER = {name: 'Courses', id : null , path : [] , parents : []};
 
-export function useFolder( folderId = null, folder= null) {
+export function useFolder( folderId = null, folder= null,rand) {
 
     // const {currentUser} = firebase.auth.currentUser;
     
@@ -109,7 +109,7 @@ export function useFolder( folderId = null, folder= null) {
                     payload : { childFolders : snapshot.docs.map(database.formatDoc) }
                 })
             })
-    },[folderId])
+    },[folderId,rand])
     useEffect(() => {
         if(firebase.auth().currentUser)
         {
@@ -126,7 +126,7 @@ export function useFolder( folderId = null, folder= null) {
         )
         }
         
-      }, [folderId])
+      }, [folderId,rand])
 
     return state;
 }

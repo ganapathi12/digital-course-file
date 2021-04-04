@@ -1,7 +1,7 @@
 import React, { useState, Component } from 'react'
 import AddFolder from './AddFolder'
 import AddFile from './AddFile'
-import { Container, Button, Navbar, Nav } from 'react-bootstrap'
+import { Container, Navbar, Nav } from 'react-bootstrap'
 import { useFolder } from '.././hooks/useFolder'
 import Folder from './Folder'
 import FolderNav from './FolderNav'
@@ -14,11 +14,18 @@ import 'firebase/storage'
 import Loader from 'react-loader-spinner'
 import Dropzone from './Dropzone'
 import ParticlesBg from 'particles-bg'
+import { v4 as uuidV4 } from 'uuid'
 
 const Hero = ({ handleLogout }) => {
   const { folderId } = useParams()
   const { state = {} } = useLocation()
-  const { folder, childFolders, childFiles } = useFolder(folderId, state.folder)
+
+  const rand = uuidV4()
+  const { folder, childFolders, childFiles } = useFolder(
+    folderId,
+    state.folder,
+    rand
+  )
 
   if (!folder) {
     return (
@@ -40,7 +47,7 @@ const Hero = ({ handleLogout }) => {
     return (
       <>
         <Container fluid>
-          <ParticlesBg type="cobweb" bg={true} />
+          <ParticlesBg type='cobweb' bg={true} />
           <div className='d-flex align-items-center'>
             <FolderNav currentFolder={folder} />
             <AddFolder currentFolder={folder} />
