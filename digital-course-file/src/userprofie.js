@@ -6,18 +6,15 @@ import ReactTooltip from 'react-tooltip'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faUser } from '@fortawesome/free-solid-svg-icons'
 
-
 export default function UserProfile({ currentFolder }) {
   const [open, setOpen] = useState(false)
   const [uid, setuid] = useState('')
   const [time, settime] = useState('')
   const divStyle = {
-    marginLeft: '900px',
-    padding: '8px',
+    marginLeft: '60%',
   }
   function openModal() {
     setOpen(true)
-    console.log(firebase.auth())
     setuid(firebase.auth().currentUser.email)
     settime(firebase.auth().currentUser.ba.currentUser.metadata.lastSignInTime)
   }
