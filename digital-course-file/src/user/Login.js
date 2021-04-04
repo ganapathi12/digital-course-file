@@ -1,8 +1,9 @@
-import React from 'react'
+import React, { useState } from 'react'
 import GoogleButton from 'react-google-button'
 import GithubButton from 'react-github-login-button'
 import { Link } from 'react-router-dom'
 import ParticlesBg from 'particles-bg'
+import swal from 'sweetalert'
 
 const Login = (props) => {
   const {
@@ -19,11 +20,20 @@ const Login = (props) => {
     googlesignin,
     githubsignin,
   } = props
+  const [confirmPassword, setConfirmPassword] = useState('')
+
+  const checkPassword = () => {
+    if (confirmPassword === password) {
+      handleSignup()
+    } else {
+      swal('Oops!', 'Passwords did not match!', 'error')
+    }
+  }
 
   return (
     <section>
       <div className='loginContainer'>
-        <label>UserName</label>
+        <label>Email</label>
         <input
           name='email'
           type='text'
@@ -41,6 +51,18 @@ const Login = (props) => {
           value={password}
           onChange={(e) => setPassword(e.target.value)}
         />
+        {!hasAccount && (
+          <>
+            <label>Confirm Password</label>
+            <input
+              name='password'
+              type='password'
+              required
+              value={confirmPassword}
+              onChange={(e) => setConfirmPassword(e.target.value)}
+            />
+          </>
+        )}
         <p className='errorMsg'>{passwordError}</p>
         <div className='btnContainer'>
           {hasAccount ? (
@@ -63,7 +85,7 @@ const Login = (props) => {
             </>
           ) : (
             <>
-              <button name='signup' onClick={handleSignup}>
+              <button name='signup' onClick={checkPassword}>
                 Sign up
               </button>
 
