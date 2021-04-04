@@ -112,6 +112,7 @@ export default function Folder ({folder}) {
         {/* FOR SHOWING DETAILS OF THE FOLDER */}
         <Modal show={showit} onHide={closeModal}>
             <Modal.Body>
+            <h3>Folder details</h3>
                 <p>Folder  :  {fname}</p>
                 <p>Created On : {(""+uploaddetail).substring(0,34)+"(IST)"}</p>
             </Modal.Body>

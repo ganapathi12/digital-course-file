@@ -126,7 +126,9 @@ export default function File({ file }) {
       {/* FOR SHOWING DETAILS OF THE FILE */}
       <Modal show={showit} onHide={closeModal}>
         <Modal.Body>
+          <h3>File details</h3>
           <p>File : {fname}</p>
+          <p></p>
           <p>Uploaded On : {('' + uploaddetail).substring(0, 34) + '(IST)'}</p>
         </Modal.Body>
         <Modal.Footer>
