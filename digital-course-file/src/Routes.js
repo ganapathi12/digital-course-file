@@ -12,7 +12,7 @@ import { Container, Button, Navbar, Nav } from 'react-bootstrap'
 import fire from './fire'
 import ForgotPassword from './user/ForgotPassword'
 import { LinkContainer } from 'react-router-bootstrap'
-import UserProfile from './user/userprofie'
+import UserProfile from './userprofie'
 
 const Routes = () => {
   const [user, setUser] = useState('')
