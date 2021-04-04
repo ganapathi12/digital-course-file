@@ -2,7 +2,7 @@ import React from 'react'
 import GoogleButton from 'react-google-button'
 import GithubButton from 'react-github-login-button'
 import { Link } from 'react-router-dom'
-
+import ParticlesBg from 'particles-bg'
 
 const Login = (props) => {
   const {
@@ -20,9 +20,8 @@ const Login = (props) => {
     githubsignin,
   } = props
 
-  
   return (
-    <section className='login'>
+    <section>
       <div className='loginContainer'>
         <label>UserName</label>
         <input
@@ -46,7 +45,9 @@ const Login = (props) => {
         <div className='btnContainer'>
           {hasAccount ? (
             <>
-              <button  name='signin' onClick={handleLogin}>Sign In</button>
+              <button name='signin' onClick={handleLogin}>
+                Sign In
+              </button>
               <div className='w-100 text-center mt-3'>
                 <Link to='/forgot-password'>Forgot Password</Link>
               </div>
@@ -62,8 +63,10 @@ const Login = (props) => {
             </>
           ) : (
             <>
-              <button name='signup' onClick={handleSignup}>Sign up</button>
-              
+              <button name='signup' onClick={handleSignup}>
+                Sign up
+              </button>
+
               <p>
                 Have an account ?{' '}
                 <span onClick={() => setHasAccount(!hasAccount)}>Sign in</span>
@@ -78,6 +81,8 @@ const Login = (props) => {
           )}
         </div>
       </div>
+
+      <ParticlesBg type='cobweb' bg={true} />
     </section>
   )
 }
