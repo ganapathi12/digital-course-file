@@ -39,9 +39,8 @@ const Hero = ({ handleLogout }) => {
   if (folder.id !== 'copyright') {
     return (
       <>
-        <ParticlesBg type='square' bg={true} />
-
         <Container fluid>
+          <ParticlesBg type="cobweb" bg={true} />
           <div className='d-flex align-items-center'>
             <FolderNav currentFolder={folder} />
             <AddFolder currentFolder={folder} />

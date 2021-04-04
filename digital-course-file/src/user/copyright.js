@@ -1,10 +1,8 @@
 import React from 'react'
-import ParticlesBg from 'particles-bg'
 
 export default function copyright() {
   return (
     <>
-      <ParticlesBg type='color' bg={true} />
       <h2>DEVELOPERS</h2>
       <h3>Ganapathi Subramanyam Jayam</h3>
       <p>Contact : jayam.ganapathi12@gmail.com</p>
