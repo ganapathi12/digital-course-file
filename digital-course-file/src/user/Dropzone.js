@@ -149,7 +149,7 @@ export default function Dropzone({ currentFolder }) {
 
           <section className='container'>
             <div {...getRootProps({ className: 'dropzone' })}>
-              <input {...getInputProps()} />
+              <input name="upload_path" {...getInputProps()} />
               <p>Drag 'n' drop some files here, or click to select files</p>
             </div>
             <aside>
