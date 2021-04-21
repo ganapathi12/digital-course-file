@@ -14,17 +14,14 @@ import 'firebase/storage'
 import Loader from 'react-loader-spinner'
 import Dropzone from './Dropzone'
 import ParticlesBg from 'particles-bg'
-import { v4 as uuidV4 } from 'uuid'
 
 const Hero = ({ handleLogout }) => {
   const { folderId } = useParams()
   const { state = {} } = useLocation()
 
-  const rand = uuidV4()
   const { folder, childFolders, childFiles } = useFolder(
     folderId,
-    state.folder,
-    rand
+    state.folder
   )
 
   if (!folder) {
