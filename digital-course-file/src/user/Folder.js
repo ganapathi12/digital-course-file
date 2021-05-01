@@ -90,7 +90,7 @@ export default function Folder({ folder }) {
   return (
     <Fragment>
       <div>
-        <BrowserRouter>
+        
           <Button
             onContextMenu={displayMenu}
             id={folder.id}
@@ -102,7 +102,7 @@ export default function Folder({ folder }) {
             <FontAwesomeIcon icon={faFolder} className='mr-2' />
             {folder.name}
           </Button>
-        </BrowserRouter>
+        
 
         {/* CONTEXT MENU FOR THE COMPONENT */}
         <Menu id={MENU_ID}>

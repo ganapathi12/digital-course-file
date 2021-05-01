@@ -39,11 +39,11 @@ export default function ForgotPassword() {
             <button onClick={handleforgot}>Reset Password</button>
             <p>
               Have an account ?{' '}
-              <BrowserRouter>
+              
                 <Link to='/signin'>
                   <span>Sign in</span>
                 </Link>
-              </BrowserRouter>
+              
             </p>
           </div>
         </div>

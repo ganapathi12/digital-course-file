@@ -13,7 +13,7 @@ export default function FolderNav({ currentFolder }) {
 
   return (
     <Fragment>
-      <BrowserRouter>
+      
         <Breadcrumb
           className='flex-grow-1'
           listProps={{ className: 'bg-white pl-0 m-0' }}
@@ -41,7 +41,7 @@ export default function FolderNav({ currentFolder }) {
             </Breadcrumb.Item>
           )}
         </Breadcrumb>
-      </BrowserRouter>
+      
     </Fragment>
   )
 }
