@@ -4,6 +4,8 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faLink, faPaste } from '@fortawesome/free-solid-svg-icons'
 import { CopyToClipboard } from 'react-copy-to-clipboard'
 import ReactTooltip from 'react-tooltip';
+import firebase from 'firebase'
+
 
 export default function Sharelink({ currentFolder }) {
   const divStyle = {
@@ -37,10 +39,10 @@ export default function Sharelink({ currentFolder }) {
           <Form.Group>
             <Form.Label>Sharable link for this folder :</Form.Label>
             <Form.Label>
-              {'https://dcfstudentsview.netlify.app/folders/' + String(currentFolder.id)}
+              {'https://dcfstudentsview.netlify.app/folders/' +String(firebase.auth().currentUser.uid)+'/'+ String(currentFolder.id) }
               <p></p>
               <CopyToClipboard
-                text={'https://dcfstudentsview.netlify.app/folders/' + String(currentFolder.id)}
+                text={'https://dcfstudentsview.netlify.app/folders/' +String(firebase.auth().currentUser.uid)+'/'+ String(currentFolder.id)}
                 onCopy={() => setClipBoard(true)}
               >
                 <FontAwesomeIcon icon={faPaste} />

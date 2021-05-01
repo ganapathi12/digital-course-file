@@ -1,7 +1,8 @@
-import { react,Fragment } from 'react'
+import { react, Fragment } from 'react'
 import { Breadcrumb } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
 import { ROOT_FOLDER } from '../hooks/useFolder'
+import { BrowserRouter, Switch, Route } from 'react-router-dom'
 
 export default function FolderNav({ currentFolder }) {
   let path = currentFolder === ROOT_FOLDER ? [] : [ROOT_FOLDER]
@@ -12,33 +13,35 @@ export default function FolderNav({ currentFolder }) {
 
   return (
     <Fragment>
-    <Breadcrumb
-      className='flex-grow-1'
-      listProps={{ className: 'bg-white pl-0 m-0' }}
-    >
-      {path.map((folder, index) => (
-        <Breadcrumb.Item
-          key={folder.id}
-          linkAs={Link}
-          linkProps={{
-            to: folder.id ? `/folder/${folder.id}` : '/',
-          }}
-          className='text-truncate d-inline-block'
-          style={{ maxWidth: '175px' }}
+      <BrowserRouter>
+        <Breadcrumb
+          className='flex-grow-1'
+          listProps={{ className: 'bg-white pl-0 m-0' }}
         >
-          {folder.name}
-        </Breadcrumb.Item>
-      ))}
-      {currentFolder && (
-        <Breadcrumb.Item
-          className='text-truncate d-inline-block'
-          style={{ maxWidth: '200px' }}
-          active
-        >
-          {currentFolder.name}
-        </Breadcrumb.Item>
-      )}
-    </Breadcrumb>
+          {path.map((folder, index) => (
+            <Breadcrumb.Item
+              key={folder.id}
+              linkAs={Link}
+              linkProps={{
+                to: folder.id ? `/folder/${folder.id}` : '/',
+              }}
+              className='text-truncate d-inline-block'
+              style={{ maxWidth: '175px' }}
+            >
+              {folder.name}
+            </Breadcrumb.Item>
+          ))}
+          {currentFolder && (
+            <Breadcrumb.Item
+              className='text-truncate d-inline-block'
+              style={{ maxWidth: '200px' }}
+              active
+            >
+              {currentFolder.name}
+            </Breadcrumb.Item>
+          )}
+        </Breadcrumb>
+      </BrowserRouter>
     </Fragment>
   )
 }
