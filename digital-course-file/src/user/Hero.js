@@ -19,10 +19,7 @@ const Hero = ({ handleLogout }) => {
   const { folderId } = useParams()
   const { state = {} } = useLocation()
 
-  const { folder, childFolders, childFiles } = useFolder(
-    folderId,
-    state.folder
-  )
+  const { folder, childFolders, childFiles } = useFolder(folderId, state.folder)
 
   if (!folder) {
     return (
