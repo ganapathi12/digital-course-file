@@ -10,9 +10,7 @@ export default function UserProfile({ currentFolder }) {
   const [open, setOpen] = useState(false)
   const [uid, setuid] = useState('')
   const [time, settime] = useState('')
-  const divStyle = {
-    marginLeft: '60%',
-  }
+
   function openModal() {
     setOpen(true)
     setuid(firebase.auth().currentUser.email)
@@ -31,7 +29,6 @@ export default function UserProfile({ currentFolder }) {
         className='logoutbutton'
         name='myprofile'
         onClick={openModal}
-        style={divStyle}
       >
         <FontAwesomeIcon icon={faUser} />
       </button>

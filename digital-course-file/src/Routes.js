@@ -13,6 +13,9 @@ import fire from './fire'
 import ForgotPassword from './user/ForgotPassword'
 import { LinkContainer } from 'react-router-bootstrap'
 import UserProfile from './userprofie'
+import CreateAssignment from './user/createassignment'
+import Assign_button from './user/Assign_button'
+import Assignments from './user/Assignments'
 
 const Routes = () => {
   const [user, setUser] = useState('')
@@ -40,6 +43,8 @@ const Routes = () => {
             <h2>Course File System</h2>
           </Navbar.Brand>
           {user && (<UserProfile></UserProfile>)}
+          {user && (<CreateAssignment></CreateAssignment>)}
+          {user && (<Assign_button></Assign_button>)}
           {user && (
             <Link to='/signin'>
               <button
@@ -53,6 +58,10 @@ const Routes = () => {
         </nav>
       </section>
       <Switch>
+        {/*Assignments*/}
+        <Route path='/assignment' exact component={Assignments} />
+        <Route path='/assignment/:folderId' exact component={Assignments} />
+
         {/*Folders*/}
         <Route path='/folder/:folderId' exact component={Hero} />
         <Route path='/' exact component={Signin} />
