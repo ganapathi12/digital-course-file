@@ -70,7 +70,7 @@ export default function CreateAssignment({ currentFolder }) {
                 value={date}
                 onChange={(e) => setDate(e.target.value)}
               />
-              <Form.Label>Desp</Form.Label>
+              <Form.Label>Description</Form.Label>
               <Form.Control
                 type='textarea'
                 required
