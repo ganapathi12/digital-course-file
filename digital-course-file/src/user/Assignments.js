@@ -10,19 +10,16 @@ import 'firebase/storage'
 import Loader from 'react-loader-spinner'
 import Dropzone from './Dropzone'
 import ParticlesBg from 'particles-bg'
+import Assg_file from './Assg_file'
 
 const Assignments = () => {
   const { folderId } = useParams()
-//   const { state = {} } = useLocation()
+  const { state = {} } = useLocation()
 
-//   const { folder, childFolders, childFiles } = useAssignment(
-//     folderId,
-//     state.folder
-//   )
-
-  const { folder, childFolders } = useAssignment(folderId)
-
-  console.log(childFolders);
+  const { folder, childFolders, childFiles } = useAssignment(
+    folderId,
+    state.folder
+  )
 
   if (!folder) {
     return (
@@ -63,7 +60,7 @@ const Assignments = () => {
             </div>
           )}
 
-          {/* {childFolders.length > 0 && childFiles.length > 0 && <hr />}
+          {childFolders.length > 0 && childFiles.length > 0 && <hr />}
           {childFiles.length > 0 && (
             <div className='d-flex flex-wrap'>
               {childFiles.map((childFile) => (
@@ -72,12 +69,12 @@ const Assignments = () => {
                   style={{ maxWidth: '250px' }}
                   className='p-2'
                 >
-                  <File file={childFile} />
+                  <Assg_file file={childFile} />
                   <div id='root'></div>
                 </div>
               ))}
             </div>
-          )} */}
+          )}
           {/* </main> */}
         </Container>
         <Navbar fixed='bottom' variant='light' bg='light'>
@@ -87,6 +84,8 @@ const Assignments = () => {
             </Nav.Link>
           </Container>
         </Navbar>
+
+
       </>
     )
   } else {

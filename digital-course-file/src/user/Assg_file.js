@@ -9,25 +9,30 @@ import { useContextMenu, Menu, Item } from 'react-contexify'
 import 'react-contexify/dist/ReactContexify.css'
 import firebase from 'firebase'
 
-export default function File({ file }) {
+export default function Assg_file({ file }) {
   const [showit, setShowit] = useState(false)
-  const MENU_ID = '#asvdsdv/asqrca662'
+  const MENU_ID = '#asvdsdv/as9298194qrca662'
   const [fname, setFname] = useState(file.name)
   const [show1, setshow1] = useState(false)
-  const [show2, setshow2] = useState(false)
-  const [fileurl, setfileURL] = useState('')
-  const [fileid, setfileid] = useState('')
+  const [folderid, setfolderid] = useState('')
+  const [fileID, setfileID] = useState('')
   const [uploaddetail, setuploadDetail] = useState('')
-  const db = firebase.firestore()
   const [uniqueid1, setuniqueid1] = useState('')
+  const [stud_name,setStud_name]= useState('')
+  const [stud_Lname,setStud_Lname]= useState('')
+  const [stud_rno,setStud_rno]= useState('')
+  const [stud_id,setStud_id]= useState('')
+  const [stud_dep,setStud_dep]= useState('')
+  const [stud_sec,setStud_sec]= useState('')
+
+
   const { show } = useContextMenu({
     id: MENU_ID,
   })
 
   function closeModal() {
-    setShowit(false)
     setshow1(false)
-    setshow2(false)
+    setShowit(false)
   }
   function displayMenu(e) {
     show(e, {
@@ -39,11 +44,13 @@ export default function File({ file }) {
         details: file.createdAt,
         fileuniqueID: file.uniqueid,
         fileID: file.id,
+        folderID: file.folderId,
+        sid : file.Sid,
       },
     })
   }
 
-  function handleItemClick({ event, props, file }) {
+  function handleItemClick({ event, props }) {
     switch (event.currentTarget.id) {
       case 'download':
         // Getting download url of the file and converting it as data to blob using axios and then downloading it
@@ -63,36 +70,64 @@ export default function File({ file }) {
         break
 
       case 'details':
-        setShowit(true)
         setFname(props.fileName)
         setuploadDetail(Date(props.details.toMillis()))
+        setfileID(props.fileID)
+        database.s_details.where("sid", "==", props.sid)
+        .get()
+        .then((querySnapshot) => {
+            querySnapshot.forEach((doc1) => {
+                setStud_name(doc1.data().fname)
+                setStud_rno(doc1.data().rollno)
+                setStud_Lname(doc1.data().lname)
+                setStud_dep(doc1.data().dept)
+                setStud_sec(doc1.data().sec)
+            });
+        })
+        .catch((error) => {
+            console.log("Error getting documents: ", error);
+        });
+        setShowit(true)
         break
+
 
       case 'delete':
         setshow1(true)
         setuniqueid1(props.fileuniqueID)
-        setfileid(props.fileid)
+        setfileID(props.fileID)
+        setfolderid(props.folderID)
+        setStud_id(props.sid)
         break
     }
   }
 
   function handleDelete({ props }) {
+    
     const storageRef = firebase.storage().ref()
+    var path = 'a_files/' + folderid + '/' + uniqueid1
+    var fileref = storageRef.child(path)
+    fileref.delete()
 
-    var path = 'files/' + firebase.auth().currentUser.uid + '/' + uniqueid1
-    console.log(path)
-    var desertRef1 = storageRef.child(path)
-    desertRef1.delete()
-
-    database.files
-      .doc(file.id)
+    database.a_files
+      .doc(fileID)
       .delete()
       .then(() => {
-        console.log('Folder deleted')
+        console.log('File deleted')
       })
       .catch((error) => {
         console.error('Error :', error)
       })
+
+      database.s_details.where("sid", "==", stud_id)
+      .get()
+      .then((querySnapshot) => {
+          querySnapshot.forEach((doc1) => {
+              doc1.ref.delete()
+          });
+      })
+      .catch((error) => {
+          console.log("Error getting documents: ", error);
+      });
 
     closeModal()
   }
@@ -126,10 +161,12 @@ export default function File({ file }) {
       {/* FOR SHOWING DETAILS OF THE FILE */}
       <Modal show={showit} onHide={closeModal}>
         <Modal.Body>
-          <h3>File details</h3>
-          <p>File : {fname}</p>
-          <p></p>
-          <p>Uploaded On : {('' + uploaddetail).substring(0, 34) + '(IST)'}</p>
+          <h2 align="center">File Upload details</h2>
+          <br></br>
+          <p><b>Student Name</b> : {stud_name} {stud_Lname}</p>
+          <p><b>Roll Number</b>  : {stud_rno}</p>
+          <p> <b>Department</b>  : {stud_dep} - {stud_sec}</p>
+          <p><b>Uploaded On</b>  : {('' + uploaddetail).substring(0, 34) + '(IST)'}</p>
         </Modal.Body>
         <Modal.Footer>
           <Button variant='danger' onClick={closeModal}>
@@ -137,7 +174,8 @@ export default function File({ file }) {
           </Button>
         </Modal.Footer>
       </Modal>
-      
+
+       {/* DELETION CONFIRMATION */}     
       <Modal show={show1} onHide={closeModal}>
         <Form>
           <Modal.Body>
@@ -151,7 +189,7 @@ export default function File({ file }) {
               variant='danger'
               onClick={handleDelete}
             >
-              DELETE
+              Delete
             </Button>
             <Button variant='primary' onClick={closeModal}>
               Cancel

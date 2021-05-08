@@ -12,7 +12,10 @@ export default function CreateAssignment({ currentFolder }) {
   const [name, setName] = useState('')
   const [date, setDate] = useState('')
   const [desp, setDesp] = useState('')
-
+  const divStyle = {
+    fontWeight: 'bold',
+    color: 'black'
+  };
   function openModal() {
     setOpen(true)
   }
@@ -41,7 +44,7 @@ export default function CreateAssignment({ currentFolder }) {
     <Fragment>
       <button
         data-tip
-        data-for='assg'
+        data-for='createassignment'
         className='logoutbutton'
         name='assg'
         onClick={openModal}
@@ -62,7 +65,7 @@ export default function CreateAssignment({ currentFolder }) {
               />
               <Form.Label>Due Date</Form.Label>
               <Form.Control
-                type='text'
+                type='date'
                 required
                 value={date}
                 onChange={(e) => setDate(e.target.value)}
@@ -87,8 +90,8 @@ export default function CreateAssignment({ currentFolder }) {
         </Form>
       </Modal>
 
-      <ReactTooltip id='createassignment' type='success' place='bottom' effect='solid'>
-        <span>Create Assignment</span>
+      <ReactTooltip id='createassignment' type='warning' place='bottom' effect='solid'>
+        <span style={divStyle}>Create Assignment</span>
       </ReactTooltip>
     </Fragment>
   )

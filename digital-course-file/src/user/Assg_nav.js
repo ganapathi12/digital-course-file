@@ -10,7 +10,7 @@ export default function Assg_nav({ currentFolder }) {
     path.push(currentFolder)
   }
 
-  console.log(path)
+  // console.log(path)
   return (
     <Fragment>
     <Breadcrumb

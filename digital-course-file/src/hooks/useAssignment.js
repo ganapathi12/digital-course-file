@@ -37,11 +37,11 @@ export function useAssignment( folderId = null, folder= null) {
                     ...state,
                     childFolders : payload.childFolders,
                 }; 
-            // case ACTIONS.SET_CHILD_FILES:
-            //     return {
-            //         ...state,
-            //         childFiles: payload.childFiles,
-            //     };    
+            case ACTIONS.SET_CHILD_FILES:
+                return {
+                    ...state,
+                    childFiles: payload.childFiles,
+                };    
 
             default:
                 return state;
@@ -111,22 +111,22 @@ export function useAssignment( folderId = null, folder= null) {
             })
     },[folderId])
 
-    // useEffect(() => {
-    //     if(firebase.auth().currentUser)
-    //     {
-    //             return (
-    //       database.a_files
-    //         .where("folderId", "==", folderId)
-    //         .where("userId", "==", firebase.auth().currentUser.uid)
-    //         .onSnapshot(snapshot => {
-    //           dispatch({
-    //             type: ACTIONS.SET_CHILD_FILES,
-    //             payload: { childFiles: snapshot.docs.map(database.formatDoc) },
-    //           })
-    //         })
-    //     )
-    //     }
-    //   }, [folderId])
+    // console.log(folderId)
+    useEffect(() => {
+        if(firebase.auth().currentUser)
+        {
+                return (
+          database.a_files
+            .where("folderId", "==", folderId)
+            .onSnapshot(snapshot => {
+              dispatch({
+                type: ACTIONS.SET_CHILD_FILES,
+                payload: { childFiles: snapshot.docs.map(database.formatDoc) },
+              })
+            })
+        )
+        }
+      }, [folderId])
 
     return state;
 }
