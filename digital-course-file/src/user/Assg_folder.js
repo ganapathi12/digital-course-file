@@ -154,9 +154,13 @@ export default function Assg_folder({folder}) {
           <Modal show={showit} onHide={closeModal}>
         <Modal.Body>
           <Form.Group>
-            <Form.Label>Sharable link for this folder :</Form.Label>
+            <Form.Label><h3>Sharable link for this Assignment :</h3></Form.Label>
+            <br></br>
             <Form.Label>
-              {'https://dcfstudentsview.netlify.app/assignment/'+ String(fid) }
+              <a href=
+              {'https://dcfstudentsview.netlify.app/assignment/'+ String(fid) }>
+                Click to view Assignment Portal
+              </a>
               <p></p>
               <CopyToClipboard
                 text={'https://dcfstudentsview.netlify.app/assignment/'+ String(fid)}

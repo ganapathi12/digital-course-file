@@ -49,9 +49,10 @@ export default function UserProfile({ currentFolder }) {
         </ModalFooter>
       </Modal>
 
-      <ReactTooltip id='Profile' type='error' place='bottom' effect='solid'>
+      <ReactTooltip id='profile' type='error' place='bottom' effect='solid'>
         <span style={{ fontWeight: 'bold' }}>My Profile</span>
       </ReactTooltip>
+
     </Fragment>
   )
 }

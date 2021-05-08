@@ -6,7 +6,15 @@ import { BrowserRouter, Switch, Route } from 'react-router-dom'
 
 export default function FolderNav({ currentFolder }) {
   let path = currentFolder === ROOT_FOLDER ? [] : [ROOT_FOLDER]
-
+  const divStyle1 = {
+    maxWidth: '200px',
+    marginLeft: '20px',
+    fontSize: '20px'
+  }
+  const divStyle2 = {
+    maxWidth: '175px',
+    fontSize: '20px'
+  }
   if (currentFolder) {
     path = [...path, ...currentFolder.path]
   }
@@ -26,7 +34,7 @@ export default function FolderNav({ currentFolder }) {
                 to: folder.id ? `/folder/${folder.id}` : '/',
               }}
               className='text-truncate d-inline-block'
-              style={{ maxWidth: '175px' }}
+              style={ divStyle1 }
             >
               {folder.name}
             </Breadcrumb.Item>
@@ -34,7 +42,7 @@ export default function FolderNav({ currentFolder }) {
           {currentFolder && (
             <Breadcrumb.Item
               className='text-truncate d-inline-block'
-              style={{ maxWidth: '200px' }}
+              style={ divStyle2 }
               active
             >
               {currentFolder.name}
