@@ -5,6 +5,12 @@ import { ROOT_FOLDER } from '../hooks/useAssignment'
 
 export default function Assg_nav({ currentFolder }) {
   let path = currentFolder === ROOT_FOLDER ? [] : [ROOT_FOLDER]
+  
+  const divStyle = {
+    maxWidth: '200px',
+    marginLeft: '20px',
+    fontSize: '20px'
+  }
 
   if (currentFolder) {
     path.push(currentFolder)
@@ -25,7 +31,7 @@ export default function Assg_nav({ currentFolder }) {
             to: folder.id ? `/assignment/${folder.id}` : '/assignment',
           }}
           className='text-truncate d-inline-block'
-          style={{ maxWidth: '200px' }}
+          style={divStyle}
         >
           {folder.name}
         </Breadcrumb.Item>

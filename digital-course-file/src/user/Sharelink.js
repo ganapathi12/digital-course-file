@@ -3,6 +3,7 @@ import { Button, Modal, Form } from 'react-bootstrap'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faLink, faPaste } from '@fortawesome/free-solid-svg-icons'
 import { CopyToClipboard } from 'react-copy-to-clipboard'
+import { Link } from 'react-router-dom'
 import ReactTooltip from 'react-tooltip';
 import firebase from 'firebase'
 
@@ -37,10 +38,16 @@ export default function Sharelink({ currentFolder }) {
       <Modal show={open} onHide={closeModal}>
         <Modal.Body>
           <Form.Group>
-            <Form.Label>Sharable link for this folder :</Form.Label>
+            <Form.Label><h3>Sharable link for this folder :</h3></Form.Label>
+            <br></br>
+            <p></p>
             <Form.Label>
+              <a href=
               {'https://dcfstudentsview.netlify.app/folders/' +String(firebase.auth().currentUser.uid)+'/'+ String(currentFolder.id) }
-              <p></p>
+              >
+                Click to view in Student View
+              </a> 
+              <br></br>
               <CopyToClipboard
                 text={'https://dcfstudentsview.netlify.app/folders/' +String(firebase.auth().currentUser.uid)+'/'+ String(currentFolder.id)}
                 onCopy={() => setClipBoard(true)}
