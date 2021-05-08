@@ -39,7 +39,6 @@ export default function AddFolder( {currentFolder} ){
                 var desertRef = storageRef.child(path);
                 desertRef.delete();
                 docm.ref.delete();
-
               });
           }); 
             doc.ref.delete();

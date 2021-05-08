@@ -6,19 +6,24 @@ import { Link } from "react-router-dom";
 import { useHistory } from "react-router-dom";
 import { database } from '../fire.js'
 import firebase from 'firebase'
+import { faLink, faPaste } from '@fortawesome/free-solid-svg-icons'
+import { CopyToClipboard } from 'react-copy-to-clipboard'
 import { useContextMenu, Menu, Item, Separator } from "react-contexify";
 import "react-contexify/dist/ReactContexify.css";
 
 export default function Assg_folder({folder}) {
-    const MENU_ID = "#aadsd299dfsdwqwdasc29";
+    const MENU_ID = "#aadswfed299dfsdwqwdasc29";
     const history = useHistory();
 
     const [showit, setShowit] = useState(false);
     const [showit1, setShowit1] = useState(false);
+    const [showit2, setShowit2] = useState(false);
     const [fname,setFname] = useState(folder.name);
     const [fid,setFid] = useState(folder.id);
+    const [fdate,setFdate] = useState('');
+    const [fdesp,setFdesp] = useState('');
     const [uploaddetail,setuploadDetail] = useState("");
-    const [name, setName] = useState(folder.name);
+    const [clipBoard, setClipBoard] = useState(false)
 
     const { show } = useContextMenu({
         id: MENU_ID,
@@ -27,9 +32,49 @@ export default function Assg_folder({folder}) {
       function closeModal(){
         setShowit(false);
         setShowit1(false);
+        setShowit2(false);
     }
+
+    function handleDelete(){
+
+      var filesdel = database.a_files
+      .where("folderId","==", fid);
+      filesdel.get().then(function(querySnapshot) {
+        querySnapshot.forEach(function(docm) { 
+          const storageRef = firebase.storage().ref();
+          var path = 'a_files/'+fid+'/'+docm.data().uniqueid;
+          // console.log(path)
+          var fileRef = storageRef.child(path);
+          fileRef.delete();
+          docm.ref.delete();
+        });
+    }); 
+  
+      database.a_folders
+        .doc(fid)
+        .delete()
+        .then(() => {
+          console.log('Assignment deleted')
+        })
+        .catch((error) => {
+          console.error('Error :', error)
+        })
+
+        database.s_details.where("assgid", "==", fid)
+        .get()
+        .then((querySnapshot) => {
+            querySnapshot.forEach((doc1) => {
+                doc1.ref.delete()
+            });
+        })
+        .catch((error) => {
+            console.log("Error getting documents: ", error);
+        });
+  
+  }
+
       function displayMenu(e) {
-        show(e, { props: { id: Number(e.currentTarget.id) , folderId : folder.id , folderName : folder.name, showit : showit , details : folder.createdAt} });
+        show(e, { props: { id: Number(e.currentTarget.id), showit1: showit1, folderId : folder.id , folderName : folder.name, showit : showit , details : folder.createdAt, date: folder.date, desp : folder.desp} });
       }
     
       function handleItemClick({ event, props, data, triggerEvent}) {
@@ -38,47 +83,24 @@ export default function Assg_folder({folder}) {
             history.push(`/assignment/${props.folderId}`);
             break;
 
-          case "rename":
+          case "delete":
             setFid(props.folderId);
             setShowit1(true);
-            setName(props.folderName);
             break;
 
           case "details":
-            setShowit(true);
-            setFname(props.folderName);
-            setuploadDetail(Date((props.details).toMillis()));
+            setShowit2(true)
+            setFname(props.folderName)
+            setuploadDetail(Date(props.details.toMillis()))
+            setFdate(props.date)
+            setFdesp(props.desp)
             break;
-  
+
+          case "share":
+            setFid(props.folderId);
+            setShowit(true);
+            break;
         }
-      }
-
-
-      function handleSubmit(e){
-
-        //Renaming the current folder in database
-        e.preventDefault();
-        const docRef = database.folders.doc(fid);
-        docRef.update({"name": name});
-        closeModal();
-        
-        //Changing name of path in all child folders
-        var folderdel = database.folders
-        .where("userId","==", firebase.auth().currentUser.uid)
-        .where("parents", "array-contains", fid);
-        folderdel.get().then(function(querySnapshot) {
-            querySnapshot.forEach(function(doc) {
-              const child_folder_id = doc.id;
-              const child_folder_path = doc.data().path;
-              for (var key in child_folder_path) {
-                if(child_folder_path[key].id == fid){
-                  child_folder_path[key].name = name;
-                }
-              }
-              const docRef1 = database.folders.doc(child_folder_id);
-              docRef1.update({"path": child_folder_path});
-            });
-        });
       }
 
     return (
@@ -103,6 +125,9 @@ export default function Assg_folder({folder}) {
             <Item id="share" onClick={handleItemClick}>
               Share
             </Item>
+            <Item id="details" onClick={handleItemClick}>
+              Details
+            </Item>
             <Item id="delete" onClick={handleItemClick}>
               Delete
             </Item>
@@ -110,11 +135,13 @@ export default function Assg_folder({folder}) {
 
 
         {/* FOR SHOWING DETAILS OF THE FOLDER */}
-        <Modal show={showit} onHide={closeModal}>
+        <Modal show={showit2} onHide={closeModal}>
             <Modal.Body>
-            <h3>Folder details</h3>
-                <p>Folder  :  {fname}</p>
-                <p>Created On : {(""+uploaddetail).substring(0,34)+"(IST)"}</p>
+            <h3 align="center">Assignment details</h3>
+                <p>Assignment Name :  {fname}</p>
+                <p>Created On      : {(""+uploaddetail).substring(0,34)+"(IST)"}</p>
+                <p>Due Date        : {fdate}</p>
+                <p>Description     : {fdesp}</p>
             </Modal.Body>
             <Modal.Footer>
             <Button variant="danger" onClick={closeModal}>
@@ -123,30 +150,53 @@ export default function Assg_folder({folder}) {
               </Modal.Footer>
           </Modal>
 
-          {/* FOR RENAMING THE FOLDER */}
-          <Modal show={showit1} onHide={closeModal} >
-            <Form onSubmit={handleSubmit}>
-              <Modal.Body>
-                <Form.Group>
-                  <Form.Label>RENAME FOLDER</Form.Label>
-                  <Form.Control
-                    type="text"
-                    required
-                    value={name}
-                    onChange={e => setName(e.target.value)}
-                  />
-                </Form.Group>
-              </Modal.Body>
-              <Modal.Footer>
-              <Button variant="success" type="submit">
-                  Rename
-                </Button>
-                <Button variant="danger" onClick={closeModal}>
-                  Cancel
-                </Button>
-              </Modal.Footer>
-            </Form>
-          </Modal>
+          {/* FOR SHARING THE FOLDER */}
+          <Modal show={showit} onHide={closeModal}>
+        <Modal.Body>
+          <Form.Group>
+            <Form.Label>Sharable link for this folder :</Form.Label>
+            <Form.Label>
+              {'https://dcfstudentsview.netlify.app/assignment/'+ String(fid) }
+              <p></p>
+              <CopyToClipboard
+                text={'https://dcfstudentsview.netlify.app/assignment/'+ String(fid)}
+                onCopy={() => setClipBoard(true)}
+              >
+                <FontAwesomeIcon icon={faPaste} />
+              </CopyToClipboard>
+              {clipBoard ? <span style={{ color: 'red' }}> Copied.</span> : null}
+            </Form.Label>
+          </Form.Group>
+        </Modal.Body>
+        <Modal.Footer>
+          <Button variant='danger' onClick={closeModal}>
+            Close
+          </Button>
+        </Modal.Footer>
+      </Modal>
+
+      {/* Assignment Delete Confirmation*/}
+      <Modal show={showit1} onHide={closeModal}>
+        <Form>
+          <Modal.Body>
+            <div>Do you want to delete the Assignment and its contents ?</div>
+          </Modal.Body>
+          <Modal.Footer>
+            <Button
+              name='del_confirm'
+              style={{ float: 'left' }}
+              className='mr-2'
+              variant='danger'
+              onClick={handleDelete}
+            >
+              DELETE
+            </Button>
+            <Button variant='primary' onClick={closeModal}>
+              Cancel
+            </Button>
+          </Modal.Footer>
+        </Form>
+      </Modal>
 
         </div>
         </Fragment>

@@ -18,8 +18,8 @@ export default function copyright() {
       <br />
       <h3>Nidharshan A</h3>
       <p>Contact : nidharshan2001@gmail.com</p>
-      <p>Website : https://cbenu4cse18036.github.io/</p>
-      <p>Github : @cbenu4cse18036</p>
+      <p>Website : https://nidharshan3401.github.io/</p>
+      <p>Github : @nidharshan3401</p>
       <p>From : India</p>
       <br />
       <h3>Nishita Dash</h3>
