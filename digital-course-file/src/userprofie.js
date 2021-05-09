@@ -1,58 +1,70 @@
 import { React, useState, Fragment } from 'react'
-import { Button, Modal, ModalFooter } from 'react-bootstrap'
+import { Container, Navbar, Nav,Row,Col} from 'react-bootstrap'
 import firebase from 'firebase'
 import 'firebase/storage'
 import ReactTooltip from 'react-tooltip'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faUser } from '@fortawesome/free-solid-svg-icons'
+import ParticlesBg from 'particles-bg'
+import Sidebar from './user/Sidebar'
+import viewimg from './UserProfile.png'
 
-export default function UserProfile({ currentFolder }) {
+export default function UserProfile() {
   const [open, setOpen] = useState(false)
-  const [uid, setuid] = useState('')
-  const [time, settime] = useState('')
-
-  function openModal() {
-    setOpen(true)
-    setuid(firebase.auth().currentUser.email)
-    settime(firebase.auth().currentUser.ba.currentUser.metadata.lastSignInTime)
-  }
-
-  function closeModal() {
-    setOpen(false)
-  }
+  const [uid, setuid] = useState(firebase.auth().currentUser.email)
+  const [uid1, setuid1] = useState(firebase.auth().currentUser.uid)
+  const [create1, setcreate1] = useState(firebase.auth().currentUser.ba.currentUser.metadata.creationTime)
+  const [time, settime] = useState(firebase.auth().currentUser.ba.currentUser.metadata.lastSignInTime)
 
   return (
-    <Fragment>
-      <button
-        data-tip
-        data-for='profile'
-        className='logoutbutton'
-        name='myprofile'
-        onClick={openModal}
-      >
-        <FontAwesomeIcon icon={faUser} />
-      </button>
-      <Modal show={open} onHide={closeModal}>
-        <Modal.Body>
-          <div>
-            <h3>My Profile: </h3>
-            <p></p>
-            Email: {uid}
-            <p></p>
-            Last Sign In Time: {time}
-          </div>
-        </Modal.Body>
-        <ModalFooter>
-          <Button variant='danger' onClick={closeModal}>
-            Cancel
-          </Button>
-        </ModalFooter>
-      </Modal>
+    <>
+      
+      {/* <Sidebar/> */}
+      <Container fluid style={{backgroundColor :'#ADD8E6'}}>
+      {/* <ParticlesBg type='cobweb' bg={true} /> */}
+      <Row >
+          <Col xl={3} lg={4} xs={3} sm={3} md={5} style={{marginLeft : '-15px'}}><Sidebar/></Col>
+          <Col >
+            <Container fluid style={{marginLeft : '-45px'}} >
+            <div className='d-flex justify-content-center'>
+              <img src={viewimg} style={{width : '80px' , height : '80px'}}></img>
+            </div>
+            {/* <div className='d-flex justify-content-center'> */}
+            <br></br>
+            <Container>
+                <div className='d-flex justify-content-center'>
+                  <h2 align='center'><b>Email Id:</b> <p>{uid}</p></h2>
+                </div>
+                <br></br>
 
-      <ReactTooltip id='profile' type='error' place='bottom' effect='solid'>
-        <span style={{ fontWeight: 'bold' }}>My Profile</span>
-      </ReactTooltip>
+                <div className='d-flex justify-content-center'>
+                <h2 align='center'><b>User Id:</b> <p>{uid1}</p></h2>
+                </div>     
+                <br></br>
 
-    </Fragment>
-  )
-}
+                <div className='d-flex justify-content-center'>
+                <h2 align='center'><b>Created At:</b> <p>{create1}</p></h2>
+                </div>   
+                <br></br>
+
+                <div className='d-flex justify-content-center'>
+                <h2 align='center'><b>Last Login:</b> <p>{time}</p></h2>
+                </div>    
+                </Container>
+            {/* </div> */}
+
+        </Container>
+          </Col>
+          </Row> 
+      </Container>
+      <Navbar fixed='bottom' variant='light' bg='light'>
+        <Container className='ml-sm-2'>
+          <Nav.Link eventKey={2} href='copyright'>
+            &copy; Digital Course File Group 2
+          </Nav.Link>
+        </Container>
+      </Navbar>
+
+
+    </>)
+    }
