@@ -42,9 +42,9 @@ const Routes = () => {
           <Navbar.Brand as={Link} to='/'>
             <h2>Course File System</h2>
           </Navbar.Brand>
-          {user && (<UserProfile></UserProfile>)}
-          {user && (<CreateAssignment></CreateAssignment>)}
-          {user && (<Assign_button></Assign_button>)}
+          {/* {user && (<UserProfile></UserProfile>)} */}
+          {/* {user && (<CreateAssignment></CreateAssignment>)} */}
+          {/* {user && (<Assign_button></Assign_button>)} */}
           {user && (
             <Link to='/signin'>
               <button
@@ -69,6 +69,8 @@ const Routes = () => {
         <Route path='/copyright' component={copyright} />
         <Route path='/folder/copyright' component={copyright} />
         <Route path='/forgot-password' component={ForgotPassword} />
+        <Route path='/profile' component={UserProfile} />
+
       </Switch>
       <Navbar fixed='bottom' variant='light' bg='light'>
         <Container className='ml-sm-2'>

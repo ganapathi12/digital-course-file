@@ -42,16 +42,17 @@ export default function CreateAssignment({ currentFolder }) {
 
   return (
     <Fragment>
-      <button
+      <Button
         data-tip
         data-for='createassignment'
-        className='logoutbutton'
+        className='mr-2'
         name='assg'
+        style={{ maxWidth: '140px' }}
         onClick={openModal}
         // style={divStyle}
       >
       <FontAwesomeIcon icon={faFilePdf} />
-      </button>
+      </Button>
       <Modal show={open} onHide={closeModal}>
         <Form onSubmit={handleSubmit}>
           <Modal.Body>
@@ -90,7 +91,7 @@ export default function CreateAssignment({ currentFolder }) {
         </Form>
       </Modal>
 
-      <ReactTooltip id='createassignment' type='warning' place='bottom' effect='solid'>
+      <ReactTooltip id='createassignment' type='success' place='bottom' effect='solid'>
         <span style={divStyle}>Create Assignment</span>
       </ReactTooltip>
     </Fragment>

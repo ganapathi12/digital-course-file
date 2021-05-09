@@ -1,7 +1,7 @@
 import React, { useState, Component } from 'react'
 import AddFolder from './AddFolder'
 import AddFile from './AddFile'
-import { Container, Navbar, Nav } from 'react-bootstrap'
+import { Container, Navbar, Nav,Row,Col} from 'react-bootstrap'
 import { useAssignment } from '.././hooks/useAssignment'
 import Assg_folder from './Assg_folder'
 import Assg_nav from './Assg_nav'
@@ -11,10 +11,13 @@ import Loader from 'react-loader-spinner'
 import Dropzone from './Dropzone'
 import ParticlesBg from 'particles-bg'
 import Assg_file from './Assg_file'
+import Sidebar from './Sidebar'
+import CreateAssignment from './createassignment'
+
 
 const Assignments = () => {
   const { folderId } = useParams()
-  const { state = {} } = useLocation()
+  const  state = {} 
 
   const { folder, childFolders, childFiles } = useAssignment(
     folderId,
@@ -40,11 +43,17 @@ const Assignments = () => {
     return (
       <>
         
-        <Assg_nav currentFolder={folder} />
-
         {/* <Sidebar/> */}
         <Container fluid >
-          <ParticlesBg type='cobweb' bg={true} />
+        <ParticlesBg type='cobweb' bg={true} />
+        <Row >
+            <Col xl={3} lg={4} xs={3} sm={3} md={5} style={{marginLeft : '-15px'}}><Sidebar/></Col>
+            <Col >
+              <Container fluid style={{marginLeft : '-45px'}}>
+              <div className='d-flex align-items-center '>
+              <Assg_nav currentFolder={folder} />
+              <CreateAssignment currentFolder={folder}/>
+              </div>
           {/* <main  className='col-md-9 col-xl-8 py-md-3 pl-md-5'> */}
           {childFolders.length > 0 && (
             <div className='d-flex flex-wrap'>
@@ -76,6 +85,10 @@ const Assignments = () => {
             </div>
           )}
           {/* </main> */}
+          </Container>
+
+            </Col>
+            </Row> 
         </Container>
         <Navbar fixed='bottom' variant='light' bg='light'>
           <Container className='ml-sm-2'>
