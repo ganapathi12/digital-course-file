@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, Component } from 'react'
 import { BrowserRouter, Switch, Route } from 'react-router-dom'
 // import PrivateRoutes from "./auth/helper/PrivateRoutes"
 // import Cart from "./core/Cart"
@@ -16,9 +16,12 @@ import UserProfile from './userprofie'
 import CreateAssignment from './user/createassignment'
 import Assign_button from './user/Assign_button'
 import Assignments from './user/Assignments'
+import Clock from 'react-live-clock'
 
 const Routes = () => {
   const [user, setUser] = useState('')
+  var today = new Date(),
+  date = today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + today.getDate();
   const authListener = () => {
     fire.auth().onAuthStateChanged((user) => {
       if (user) {
@@ -45,6 +48,12 @@ const Routes = () => {
           {/* {user && (<UserProfile></UserProfile>)} */}
           {/* {user && (<CreateAssignment></CreateAssignment>)} */}
           {/* {user && (<Assign_button></Assign_button>)} */}
+          <h3 style={{backgroundColor: '#603bbb',color: 'white'}}>
+            {date}
+          </h3>
+          <h3 style={{backgroundColor: '#603bbb',color: 'white'}}>
+            <Clock format="HH:mm:ss" interval={1000} ticking={true}/>
+            </h3>
           {user && (
             <Link to='/signin'>
               <button
