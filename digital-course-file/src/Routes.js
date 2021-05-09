@@ -1,11 +1,8 @@
 import React, { useState, useEffect, Component } from 'react'
 import { BrowserRouter, Switch, Route } from 'react-router-dom'
-// import PrivateRoutes from "./auth/helper/PrivateRoutes"
-// import Cart from "./core/Cart"
 import Home from './core/Home'
 import Hero from './user/Hero'
 import Signin from './user/Signin'
-// import UserDashboard from "./user/UserDashboard"
 import copyright from './user/copyright'
 import { Link } from 'react-router-dom'
 import { Container, Button, Navbar, Nav } from 'react-bootstrap'
