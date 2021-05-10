@@ -100,7 +100,7 @@ export default function Assg_folder({folder}) {
           case "details":
             setShowit2(true)
             setFname(props.folderName)
-            setuploadDetail(Date(props.details.toMillis()))
+            setuploadDetail(props.details.toDate())
             setFdate(props.date)
             setFdesp(props.desp)
             setEnable(props.toggle)
@@ -170,7 +170,7 @@ export default function Assg_folder({folder}) {
             <Modal.Body>
             <h3 align="center">Assignment details</h3>
                 <p>Assignment Name :  {fname}</p>
-                <p>Created On      : {(""+uploaddetail).substring(0,34)+"(IST)"}</p>
+                <p>Created On      : {(""+uploaddetail).substring(0,25)+"(IST)"}</p>
                 <p>Due Date        : {fdate}</p>
                 <p>Description     : {fdesp}</p>
                 {enable && 

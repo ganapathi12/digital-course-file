@@ -12,6 +12,14 @@ export default function CreateAssignment({ currentFolder }) {
   const [name, setName] = useState('')
   const [date, setDate] = useState('')
   const [desp, setDesp] = useState('')
+
+  var today = new Date()
+  let date1;
+  if(today.getMonth() + 1 < 10)
+    date1 = today.getFullYear() + '-0' + (today.getMonth() + 1) + '-' + today.getDate();
+  else
+    date1 = today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + today.getDate();
+
   const divStyle = {
     fontWeight: 'bold',
     color: 'black'
@@ -24,6 +32,7 @@ export default function CreateAssignment({ currentFolder }) {
     setOpen(false)
   }
 
+
   function handleSubmit(e) {
     e.preventDefault()
     database.a_folders.add({
@@ -33,7 +42,7 @@ export default function CreateAssignment({ currentFolder }) {
       date: date,
       createdAt: database.getTime(),
       desp: desp,
-      toggle : false,
+      toggle : (date1>date) ? false : true,
     })
     setName('')
     setDate('')

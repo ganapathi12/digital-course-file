@@ -56,7 +56,7 @@ export default function Folder({ folder }) {
       case 'details':
         setShowit(true)
         setFname(props.folderName)
-        setuploadDetail(Date(props.details.toMillis()))
+        setuploadDetail(props.details.toDate())
         break
     }
   }
@@ -122,7 +122,7 @@ export default function Folder({ folder }) {
           <Modal.Body>
             <h3>Folder details</h3>
             <p>Folder : {fname}</p>
-            <p>Created On : {('' + uploaddetail).substring(0, 34) + '(IST)'}</p>
+            <p>Created On : {('' + uploaddetail).substring(0, 25) + '(IST)'}</p>
           </Modal.Body>
           <Modal.Footer>
             <Button variant='danger' onClick={closeModal}>

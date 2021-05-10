@@ -51,55 +51,55 @@ export default function Assg_file({ file }) {
   }
 
   function handleItemClick({ event, props }) {
-    switch (event.currentTarget.id) {
-      case 'download':
-        // Getting download url of the file and converting it as data to blob using axios and then downloading it
-        var httpsReference = storage.refFromURL(props.fileURL)
-        httpsReference
-          .getDownloadURL()
-          .then((url) => {
-            Axios.get(url, {
-              responseType: 'blob',
-            }).then((res) => {
-              fileDownload(res.data, props.fileName)
-            })
-          })
-          .catch((error) => {
-            console.log('ERROR')
-          })
-        break
+            switch (event.currentTarget.id) {
+              case 'download':
+                // Getting download url of the file and converting it as data to blob using axios and then downloading it
+                var httpsReference = storage.refFromURL(props.fileURL)
+                httpsReference
+                  .getDownloadURL()
+                  .then((url) => {
+                    Axios.get(url, {
+                      responseType: 'blob',
+                    }).then((res) => {
+                      fileDownload(res.data, props.fileName)
+                    })
+                  })
+                  .catch((error) => {
+                    console.log('ERROR')
+                  })
+                break
 
-      case 'details':
-        setFname(props.fileName)
-        setuploadDetail(Date(props.details.toMillis()))
-        setfileID(props.fileID)
-        database.s_details.where("sid", "==", props.sid)
-        .get()
-        .then((querySnapshot) => {
-            querySnapshot.forEach((doc1) => {
-                setStud_name(doc1.data().fname)
-                setStud_rno(doc1.data().rollno)
-                setStud_Lname(doc1.data().lname)
-                setStud_dep(doc1.data().dept)
-                setStud_sec(doc1.data().sec)
-            });
-        })
-        .catch((error) => {
-            console.log("Error getting documents: ", error);
-        });
-        setShowit(true)
-        break
+              case 'details':
+                setFname(props.fileName)
+                setuploadDetail(props.details.toDate())
+                setfileID(props.fileID)
+                database.s_details.where("sid", "==", props.sid)
+                .get()
+                .then((querySnapshot) => {
+                    querySnapshot.forEach((doc1) => {
+                        setStud_name(doc1.data().fname)
+                        setStud_rno(doc1.data().rollno)
+                        setStud_Lname(doc1.data().lname)
+                        setStud_dep(doc1.data().dept)
+                        setStud_sec(doc1.data().sec)
+                    });
+                })
+                .catch((error) => {
+                    console.log("Error getting documents: ", error);
+                });
+                setShowit(true)
+                break
 
 
-      case 'delete':
-        setshow1(true)
-        setuniqueid1(props.fileuniqueID)
-        setfileID(props.fileID)
-        setfolderid(props.folderID)
-        setStud_id(props.sid)
-        break
-    }
-  }
+              case 'delete':
+                setshow1(true)
+                setuniqueid1(props.fileuniqueID)
+                setfileID(props.fileID)
+                setfolderid(props.folderID)
+                setStud_id(props.sid)
+                break
+        }
+      }
 
   function handleDelete({ props }) {
     
@@ -166,7 +166,7 @@ export default function Assg_file({ file }) {
           <p><b>Student Name</b> : {stud_name} {stud_Lname}</p>
           <p><b>Roll Number</b>  : {stud_rno}</p>
           <p> <b>Department</b>  : {stud_dep} - {stud_sec}</p>
-          <p><b>Uploaded On</b>  : {('' + uploaddetail).substring(0, 34) + '(IST)'}</p>
+          <p><b>Uploaded On</b>  : {('' + uploaddetail).substring(0, 25) + '(IST)'}</p>
         </Modal.Body>
         <Modal.Footer>
           <Button variant='danger' onClick={closeModal}>

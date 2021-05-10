@@ -8,7 +8,7 @@ export default function Assg_nav({ currentFolder }) {
   
   const divStyle = {
     maxWidth: '200px',
-    marginLeft: '20px',
+    marginLeft: '-5px',
     fontSize: '20px'
   }
 
