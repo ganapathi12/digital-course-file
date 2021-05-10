@@ -15,6 +15,7 @@ export default function Assg_folder({folder}) {
     const MENU_ID = "#aadswfed299dfsdwqwdasc29";
     const history = useHistory();
 
+    const [open, setopen] = useState(false);
     const [showit, setShowit] = useState(false);
     const [showit1, setShowit1] = useState(false);
     const [showit2, setShowit2] = useState(false);
@@ -24,6 +25,7 @@ export default function Assg_folder({folder}) {
     const [fdesp,setFdesp] = useState('');
     const [uploaddetail,setuploadDetail] = useState("");
     const [clipBoard, setClipBoard] = useState(false)
+    const [enable, setEnable] = useState(folder.toggle)
 
     const { show } = useContextMenu({
         id: MENU_ID,
@@ -33,10 +35,10 @@ export default function Assg_folder({folder}) {
         setShowit(false);
         setShowit1(false);
         setShowit2(false);
+        setopen(false);
     }
 
     function handleDelete(){
-
       var filesdel = database.a_files
       .where("folderId","==", fid);
       filesdel.get().then(function(querySnapshot) {
@@ -49,7 +51,7 @@ export default function Assg_folder({folder}) {
           docm.ref.delete();
         });
     }); 
-  
+    
       database.a_folders
         .doc(fid)
         .delete()
@@ -73,8 +75,15 @@ export default function Assg_folder({folder}) {
   
   }
 
+  function handleEdit(e){
+    e.preventDefault()
+    const docRef1 = database.a_folders.doc(fid)
+    docRef1.update({ name: fname,date :fdate,desp :fdesp  })
+    closeModal();
+  }
+
       function displayMenu(e) {
-        show(e, { props: { id: Number(e.currentTarget.id), showit1: showit1, folderId : folder.id , folderName : folder.name, showit : showit , details : folder.createdAt, date: folder.date, desp : folder.desp} });
+        show(e, { props: { id: Number(e.currentTarget.id), showit1: showit1, folderId : folder.id , folderName : folder.name, showit : showit , details : folder.createdAt, date: folder.date, desp : folder.desp, toggle : folder.toggle, enable : enable} });
       }
     
       function handleItemClick({ event, props, data, triggerEvent}) {
@@ -94,12 +103,28 @@ export default function Assg_folder({folder}) {
             setuploadDetail(Date(props.details.toMillis()))
             setFdate(props.date)
             setFdesp(props.desp)
+            setEnable(props.toggle)
             break;
 
           case "share":
             setFid(props.folderId);
             setShowit(true);
             break;
+
+          case "edit":
+            setopen(true);
+            setFid(props.folderId);
+            setFname(props.folderName)
+            setFdate(props.date)
+            setFdesp(props.desp)
+            setShowit(true);
+            break;
+
+          case "toggle":
+            setEnable(!(props.toggle))
+            const docRef = database.a_folders.doc(props.folderId)
+            docRef.update({ toggle: !(props.toggle) })
+            break
         }
       }
 
@@ -128,8 +153,14 @@ export default function Assg_folder({folder}) {
             <Item id="details" onClick={handleItemClick}>
               Details
             </Item>
+            <Item id="edit" onClick={handleItemClick}>
+              Modify
+            </Item>
             <Item id="delete" onClick={handleItemClick}>
               Delete
+            </Item>
+            <Item id="toggle" onClick={handleItemClick}>
+              Allow / Disallow
             </Item>
         </Menu>
 
@@ -142,6 +173,10 @@ export default function Assg_folder({folder}) {
                 <p>Created On      : {(""+uploaddetail).substring(0,34)+"(IST)"}</p>
                 <p>Due Date        : {fdate}</p>
                 <p>Description     : {fdesp}</p>
+                {enable && 
+                    <p>Submissions     : Allowed</p>    }  
+                {!enable && 
+                    <p>Submissions     : Not Allowed</p>    }              
             </Modal.Body>
             <Modal.Footer>
             <Button variant="danger" onClick={closeModal}>
@@ -193,7 +228,7 @@ export default function Assg_folder({folder}) {
               variant='danger'
               onClick={handleDelete}
             >
-              DELETE
+              Delete
             </Button>
             <Button variant='primary' onClick={closeModal}>
               Cancel
@@ -201,6 +236,45 @@ export default function Assg_folder({folder}) {
           </Modal.Footer>
         </Form>
       </Modal>
+
+      {/* Assignment Edit Details*/}
+        <Modal show={open} onHide={closeModal}>
+          <Form onSubmit={handleEdit}>
+            <Modal.Body>
+              <Form.Group>
+                <Form.Label>Assignment Name</Form.Label>
+                <Form.Control
+                  type='text'
+                  required
+                  value={fname}
+                  onChange={(e) => setFname(e.target.value)}
+                />
+                <Form.Label>Due Date</Form.Label>
+                <Form.Control
+                  type='date'
+                  required
+                  value={fdate}
+                  onChange={(e) => setFdate(e.target.value)}
+                />
+                <Form.Label>Description</Form.Label>
+                <Form.Control
+                  type='textarea'
+                  required
+                  value={fdesp}
+                  onChange={(e) => setFdesp(e.target.value)}
+                />
+              </Form.Group>
+            </Modal.Body>
+            <Modal.Footer>
+              <Button name='create_assignment' variant='success' type='submit'>
+                Modify Assignment
+              </Button>
+              <Button variant='danger' onClick={closeModal}>
+                Cancel
+              </Button>
+            </Modal.Footer>
+          </Form>
+        </Modal>
 
         </div>
         </Fragment>

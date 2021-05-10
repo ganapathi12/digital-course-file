@@ -33,6 +33,7 @@ export default function CreateAssignment({ currentFolder }) {
       date: date,
       createdAt: database.getTime(),
       desp: desp,
+      toggle : false,
     })
     setName('')
     setDate('')
