@@ -19,6 +19,7 @@ export default function UserProfile() {
   return (
     <>
       
+      
       {/* <Sidebar/> */}
       <Container fluid style={{backgroundColor :'#ADD8E6'}}>
       {/* <ParticlesBg type='cobweb' bg={true} /> */}

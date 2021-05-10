@@ -106,6 +106,7 @@ export default function Assg_folder({folder}) {
             setEnable(props.toggle)
             break;
 
+            
           case "share":
             setFid(props.folderId);
             setShowit(true);

@@ -25,7 +25,6 @@ export default function Assg_file({ file }) {
   const [stud_dep,setStud_dep]= useState('')
   const [stud_sec,setStud_sec]= useState('')
 
-
   const { show } = useContextMenu({
     id: MENU_ID,
   })

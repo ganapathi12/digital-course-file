@@ -138,6 +138,7 @@ export default function File({ file }) {
         </Modal.Footer>
       </Modal>
       
+      
       <Modal show={show1} onHide={closeModal}>
         <Form>
           <Modal.Body>

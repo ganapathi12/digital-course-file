@@ -37,7 +37,7 @@ const Hero = ({ handleLogout }) => {
       </>
     )
   }
-
+ 
 
   if (folder.id !== 'copyright') {
     return (
