@@ -6,9 +6,10 @@ import { ROOT_FOLDER } from '../hooks/useAssignment'
 export default function Assg_nav({ currentFolder }) {
   let path = currentFolder === ROOT_FOLDER ? [] : [ROOT_FOLDER]
   
+  
   const divStyle = {
     maxWidth: '200px',
-    marginLeft: '20px',
+    marginLeft: '-5px',
     fontSize: '20px'
   }
 

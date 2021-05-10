@@ -19,6 +19,7 @@ export default function UserProfile() {
   return (
     <>
       
+      
       {/* <Sidebar/> */}
       <Container fluid style={{backgroundColor :'#ADD8E6'}}>
       {/* <ParticlesBg type='cobweb' bg={true} /> */}
@@ -33,22 +34,22 @@ export default function UserProfile() {
             <br></br>
             <Container>
                 <div className='d-flex justify-content-center'>
-                  <h2 align='center'><b>Email Id:</b> <p>{uid}</p></h2>
+                  <h3 align='center'><b>EMAIL ID</b> <p>{uid}</p></h3>
                 </div>
                 <br></br>
 
                 <div className='d-flex justify-content-center'>
-                <h2 align='center'><b>User Id:</b> <p>{uid1}</p></h2>
+                <h3 align='center'><b>USER ID</b> <p>{uid1}</p></h3>
                 </div>     
                 <br></br>
 
                 <div className='d-flex justify-content-center'>
-                <h2 align='center'><b>Created At:</b> <p>{create1}</p></h2>
+                <h3 align='center'><b>CREATED ON</b> <p>{create1}</p></h3>
                 </div>   
                 <br></br>
 
                 <div className='d-flex justify-content-center'>
-                <h2 align='center'><b>Last Login:</b> <p>{time}</p></h2>
+                <h3 align='center'><b>LAST LOGIN</b> <p>{time}</p></h3>
                 </div>    
                 </Container>
             {/* </div> */}

@@ -65,7 +65,7 @@ export default function File({ file }) {
       case 'details':
         setShowit(true)
         setFname(props.fileName)
-        setuploadDetail(Date(props.details.toMillis()))
+        setuploadDetail(props.details.toDate())
         break
 
       case 'delete':
@@ -129,7 +129,7 @@ export default function File({ file }) {
           <h3>File details</h3>
           <p>File : {fname}</p>
           <p></p>
-          <p>Uploaded On : {('' + uploaddetail).substring(0, 34) + '(IST)'}</p>
+          <p>Uploaded On : {('' + uploaddetail).substring(0, 25) + '(IST)'}</p>
         </Modal.Body>
         <Modal.Footer>
           <Button variant='danger' onClick={closeModal}>
@@ -137,6 +137,7 @@ export default function File({ file }) {
           </Button>
         </Modal.Footer>
       </Modal>
+      
       
       <Modal show={show1} onHide={closeModal}>
         <Form>
