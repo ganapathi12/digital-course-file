@@ -25,6 +25,7 @@ import "firebase/storage"
     a_folders :  firestore.collection('a_folders'),
     a_files : firestore.collection('a_files'),
     s_details : firestore.collection('s_details'),
+    feedback : firestore.collection('feedback'),
     getTime : firebase.firestore.FieldValue.serverTimestamp,
     formatDoc : doc => { return {id : doc.id, ...doc.data()} },
   }

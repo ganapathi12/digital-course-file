@@ -26,6 +26,7 @@ export default function UserProfile() {
       <Row >
           <Col xl={3} lg={4} xs={3} sm={3} md={5} style={{marginLeft : '-15px'}}><Sidebar/></Col>
           <Col >
+          <br></br>
             <Container fluid style={{marginLeft : '-45px'}} >
             <div className='d-flex justify-content-center'>
               <img src={viewimg} style={{width : '80px' , height : '80px'}}></img>
