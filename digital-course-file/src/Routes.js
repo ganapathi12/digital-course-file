@@ -13,6 +13,7 @@ import UserProfile from './userprofie'
 import CreateAssignment from './user/createassignment'
 import Assign_button from './user/Assign_button'
 import Assignments from './user/Assignments'
+import Feedback from './user/Feedback'
 import Clock from 'react-live-clock'
 
 
@@ -77,6 +78,7 @@ const Routes = () => {
         <Route path='/folder/copyright' component={copyright} />
         <Route path='/forgot-password' component={ForgotPassword} />
         <Route path='/profile' component={UserProfile} />
+        <Route path='/feedback'  component={Feedback} />
 
       </Switch>
       <Navbar fixed='bottom' variant='light' bg='light'>
