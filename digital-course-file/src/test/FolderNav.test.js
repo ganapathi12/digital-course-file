@@ -7,5 +7,5 @@ it("Unit testing for Folder Navigation", () =>{
     const folder2 = {id:'dsgsgr',name:'2edwg'}
     const folder = {id:'12345',name:'qwqq',path:[folder1,folder2]}
     const fragment = document.createElement("Fragment");
-    ReactDOM.render(<FolderNav currentFolder={folder}></FolderNav>,fragment)
+    //ReactDOM.render(<FolderNav currentFolder={folder}></FolderNav>,fragment)
 })
