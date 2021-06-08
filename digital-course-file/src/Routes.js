@@ -83,10 +83,9 @@ const Routes = () => {
       </Switch>
       <Navbar fixed='bottom' variant='light' bg='light'>
         <Container className='ml-sm-2'>
-          <LinkContainer to='/copyright'>
-            <Nav.Link>&copy; Digital Course File Group 2</Nav.Link>
-          </LinkContainer>
+            <Nav.Link href={'https://dcfshome.netlify.app/'} target={'_blank'}>&copy; Digital Course File Group 2</Nav.Link>
         </Container>
+        <Nav.Link href={'https://dcfshome.netlify.app/#contact'} target={'_blank'}>Feedback & Queries</Nav.Link>
       </Navbar>
     </BrowserRouter>
   )
