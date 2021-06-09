@@ -83,7 +83,7 @@ export default function AddFolder( {currentFolder} ){
                   DELETE
               </Button>
               <Button style={{maxWidth : "80px" }} className="mr-2" variant="primary" onClick={closeModal} >
-                Cancel
+                CANCEL
               </Button>
               </ModalFooter>
           </Modal>
