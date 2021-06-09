@@ -43,13 +43,13 @@ export default function Sharelink({ currentFolder }) {
             <p></p>
             <Form.Label>
               <a href=
-              {'https://dcfstudentsview.netlify.app/folders/' +String(firebase.auth().currentUser.uid)+'/'+ String(currentFolder.id) }
+              {'https://dcfsstudentsview-xjnmztbnaa-el.a.run.app/folders/' +String(firebase.auth().currentUser.uid)+'/'+ String(currentFolder.id) }
               >
                 Click to view in Student View
               </a> 
               <br></br>
               <CopyToClipboard
-                text={'https://dcfstudentsview.netlify.app/folders/' +String(firebase.auth().currentUser.uid)+'/'+ String(currentFolder.id)}
+                text={'https://dcfsstudentsview-xjnmztbnaa-el.a.run.app/folders/' +String(firebase.auth().currentUser.uid)+'/'+ String(currentFolder.id)}
                 onCopy={() => setClipBoard(true)}
               >
                 <FontAwesomeIcon icon={faPaste} />

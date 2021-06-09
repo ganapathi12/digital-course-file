@@ -194,12 +194,12 @@ export default function Assg_folder({folder}) {
             <br></br>
             <Form.Label>
               <a href=
-              {'https://dcfstudentsview.netlify.app/assignment/'+ String(fid) }>
+              {'https://dcfsstudentsview-xjnmztbnaa-el.a.run.app/assignment/'+ String(fid) }>
                 Click to view Assignment Portal
               </a>
               <p></p>
               <CopyToClipboard
-                text={'https://dcfstudentsview.netlify.app/assignment/'+ String(fid)}
+                text={'https://dcfsstudentsview-xjnmztbnaa-el.a.run.app/assignment/'+ String(fid)}
                 onCopy={() => setClipBoard(true)}
               >
                 <FontAwesomeIcon icon={faPaste} />
