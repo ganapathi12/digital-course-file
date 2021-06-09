@@ -1,4 +1,4 @@
-import {React,useState, Componen } from 'react'
+import {React,useState } from 'react'
 import { useEffect } from 'react'
 import { Container, Navbar, Nav,Row,Col,Table} from 'react-bootstrap'
 import 'firebase/storage'
@@ -6,15 +6,9 @@ import Sidebar from './Sidebar'
 import FeedbackShare from './FeedbackShare'
 import { database } from '../fire.js'
 import firebase from 'firebase'
-import ParticlesBg from 'particles-bg'
 
 const Feedback = () => {
 
-  window.beforeunload = (e) => {
-    console.log('Stop this');
-    e.preventDefault()
-    e.returnValue = '';
-  };
   const [feedbacks , setFeedbacks] = useState([]);
   const Fetchdata = () => {
     database.feedback.where("proff_id","==", firebase.auth().currentUser.uid).get().then((querySnapshot) => {
@@ -24,6 +18,7 @@ const Feedback = () => {
         })
     })
   } 
+
     useEffect(() => {
       Fetchdata();
   }, [])
@@ -41,7 +36,7 @@ const Feedback = () => {
               <Container fluid style={{marginLeft : '-45px'}}>
               <div className='d-flex align-items-center' >
                  <h4 className='flex-grow-1' >Feedback given by students :</h4>
-                <FeedbackShare currentUserId={firebase.auth().currentUser.uid}/>
+                    <FeedbackShare currentUserId={firebase.auth().currentUser.uid}/>
               </div>
               <br></br><br></br>
               <div className='d-flex flex-wrap'>
@@ -50,16 +45,18 @@ const Feedback = () => {
                     <thead>
                         <tr align='center'>
                         <th style={{width: '5%'}}>SNO</th>
+                        <th  style={{width: '15%'}}>Course Name</th>
                         <th  style={{width: '10%'}}>Course Rating (1-5)</th>
                         <th  style={{width: '10%'}}>Teaching Rating (1-5)</th>
                         <th style={{width: '10%'}}>Overall Rating (1-10)</th>
-                        <th style={{width: '40%'}}>Suggestions</th>
+                        <th style={{width: '30%'}}>Suggestions</th>
                         </tr>
                     </thead>
                     <tbody>
                     {feedbacks.map((feedback,index) => (
                         <tr align='center'>
                             <td>{index+1}</td>
+                            <td>{feedback.name}</td>
                             <td>{feedback.q1}</td>
                             <td>{feedback.q2}</td>
                             <td>{feedback.q3}</td>
@@ -81,6 +78,8 @@ const Feedback = () => {
             </Col>
             </Row> 
         </Container>
+
+
         <Navbar fixed='bottom' variant='light' bg='light'>
           <Container className='ml-sm-2'>
             <Nav.Link eventKey={2} href='copyright'>

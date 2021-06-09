@@ -155,7 +155,7 @@ export default function File({ file }) {
               DELETE
             </Button>
             <Button variant='primary' onClick={closeModal}>
-              Cancel
+              CANCEL
             </Button>
           </Modal.Footer>
         </Form>
