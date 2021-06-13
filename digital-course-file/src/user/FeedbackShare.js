@@ -40,13 +40,13 @@ export default function FeedbackShare({ currentUserId }) {
             <p></p>
             <Form.Label>
               <a href=
-              {'https://dcfsstudentsview-xjnmztbnaa-el.a.run.app/feedback/' +String(currentUserId)}
+              {'https://dcfstudentsview.netlify.app/feedback/' +String(currentUserId)}
               >
                 Click to view in Student View
               </a> 
               <br></br>
               <CopyToClipboard
-                text={'https://dcfsstudentsview-xjnmztbnaa-el.a.run.app/feedback/' +String(currentUserId)}
+                text={'https://dcfstudentsview.netlify.app/feedback/' +String(currentUserId)}
                 onCopy={() => setClipBoard(true)}
               >
                 <FontAwesomeIcon icon={faPaste} />
